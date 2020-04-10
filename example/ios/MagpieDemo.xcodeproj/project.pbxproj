@@ -407,7 +407,7 @@
 					"-framework",
 					"\"UIKit\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.58tongzhenclient.iphone;
+				PRODUCT_BUNDLE_IDENTIFIER = com.magpieDemo.iphone;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = UTown_dev;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -451,7 +451,7 @@
 					"-framework",
 					"\"UIKit\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.58tongzhenclient.iphone;
+				PRODUCT_BUNDLE_IDENTIFIER = com.magpieDemo.iphone;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = UTown_distr;
 				TARGETED_DEVICE_FAMILY = "1,2";
