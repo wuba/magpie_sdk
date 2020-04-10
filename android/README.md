@@ -39,10 +39,10 @@ dependencies {
 
 ## 使用方法
 
-Magpie初始化
+Magpie SDK初始化
 ``` java
         /**
-         * magpie初始化
+         * magpie SDK初始化
          */
         MagpiePlatform platform = new Magpie
                 .MagpieConfigBuilder(this,new MagpieRouter())

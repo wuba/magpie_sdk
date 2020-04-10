@@ -1,7 +1,7 @@
-# magpie
+# magpie SDK
 
-magpie是一个flutter plugin,内部已为开发者集成了flutter engine等相关必要库，native开发同学无需安装flutter SDK；
-magpie还内置包装了[FlutterBoost](https://github.com/alibaba/flutter_boost)路由及页面生命周期管理功能，新增了native与dart侧常用的一些通信能力，
+magpie SDK是一个flutter plugin,内部已为开发者集成了flutter engine等相关必要库，native开发同学无需安装flutter SDK；
+magpie SDK还内置包装了[FlutterBoost](https://github.com/alibaba/flutter_boost)路由及页面生命周期管理功能，新增了native与dart侧常用的一些通信能力，
 提供协议动态注册等常用功能。     
 (A Native-Futter hybrid development solution. Native developers do not need 
 to install FlutterSDK. This Flutter plugin provides general capabilities such as routing management
@@ -21,8 +21,8 @@ to install FlutterSDK. This Flutter plugin provides general capabilities such as
                 - lib            Dart 示例工程
                         
                  
-## magpie版本说明
-magpei plugin基于v1.12.13-hotfixes
+## magpie SDK版本说明
+magpei SDK基于v1.12.13-hotfixes
 如果你是native开发同学，那么可以不用安装flutter SDK，magpie内部已集成flutter engine等相关必要库
 
 ## 安装
@@ -31,7 +31,7 @@ magpei plugin基于v1.12.13-hotfixes
 [Dart集成Magpie Plugin详见这里。](./lib/README.md)
 
 ### iOS代码集成和使用
-[iOS集成MagpieBridge SDK详见这里。](./ios/README.md)
+[iOS集成Magpie SDK详见这里。](./ios/README.md)
 
 ### Android代码集成和使用
 [Android集成Magpie SDK详见这里。](./android/README.md)
