@@ -15,7 +15,7 @@ Podfile中需在target ‘***’ do 后面加入
 
 ### 源码
 
-    pod 'MagpieBridge', :path => 'magpie/ios/code'
+    pod 'MagpieBridge', :path => 'magpie/ios/source'
 
 ### 静态库
 

@@ -2,7 +2,7 @@
 platform :ios, '8.0'
 
 #配置Magpie和FlutterEngine环境
-ENV['debug'] = '0'
+ENV['debug'] = '1'
 
 def load_workflow_podhelper (path,tag=nil)
   if (path.start_with?('git')||path.start_with?('http'))
@@ -20,19 +20,16 @@ def load_workflow_podhelper (path,tag=nil)
   load File.join(path,'podhelper.rb')
 end
 #load_workflow_podhelper('git@git.google.com','1.2.3')
-load_workflow_podhelper('Pods/workFlow_temp/product')
+load_workflow_podhelper('../../ios/product')
 
 target 'MagpieDemo' do
 
   pod 'Source', :path => 'Source'
 
-  #pod 'MagpieBridge', :path => '../../ios/lib'
-  pod 'MagpieBridge', :path => '../../ios/code'
-
+  pod 'MagpieBridge', :path => '../../ios/source'
   pod 'Flutter', :path => '../../ios/flutter'
-
-  #pod 'FlutterBusiness', :path => '../../ios/product'
-
   install_flutter_business_pods
+
+ #pod 'FlutterBusiness', :path => '../../ios/product'
 
 end

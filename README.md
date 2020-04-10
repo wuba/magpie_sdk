@@ -10,10 +10,11 @@ to install FlutterSDK. This Flutter plugin provides general capabilities such as
 ## 目录结构
 
     -  lib
-    -  ios      - code           Magpie iOS SDK 源码 , 可通过Pod集成
+    -  ios      - source         Magpie iOS SDK 源码 , 可通过Pod集成
                 - flutter        Flutter Engine , 可通过Pod集成
                 - lib            Magpie iOS SDK 静态库，可通过Pod集成
                 - lib_project    Magpie iOS SDK静态库编译工程
+                - product        iOS debug demo app.framework 
     -  android                   Magpie android SDK源码，可通过gradle集成
     -  example  - android        android 示例工程 
                 - ios            iOS 示例工程
