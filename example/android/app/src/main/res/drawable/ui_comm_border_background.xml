@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <item android:state_enabled="false">
+        <shape>
+            <corners android:radius="4.5dp"/>
+            <solid android:color="#e1e2e3"/>
+        </shape>
+    </item>
+
+    <!-- 红色按钮背景 -->
+    <item android:state_pressed="false">
+        <shape>
+            <corners android:radius="4.5dp"/>
+            <solid android:color="@color/orange_F59A23"/>
+        </shape>
+    </item>
+    <item android:state_pressed="true">
+        <shape>
+            <corners android:radius="4.5dp"/>
+            <solid android:color="#e1e2e3"/>
+        </shape>
+    </item>
+    >
+
+
+</selector>

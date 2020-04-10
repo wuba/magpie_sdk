@@ -1,0 +1,165 @@
+
+apply plugin: 'maven-publish'
+apply plugin: 'com.jfrog.artifactory'
+apply plugin: 'com.jfrog.bintray'
+
+
+//生成sourceJar和javaDocJar构件
+task sourcesJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    classifier = 'sources'
+}
+
+task javadoc(type: Javadoc) {
+    failOnError false
+    source = android.sourceSets.main.java.sourceFiles
+    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+    classpath += configurations.compile
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+
+artifacts {
+    archives sourcesJar
+    archives javadocJar
+
+}
+
+// 定义pom文件参数
+def mRepo = "magpie"
+def gitUrl = 'https://github.com/hyman/basetools'   // Git仓库的url
+def groupIdDefined = "com.wuba.magpie"//
+def artifactIdDefined = "magpie_debug"
+def versionDefined = "0.0.1"
+
+bintray {
+    user = 'hxingood123'
+    key = 'xxx' //在"edit profile"的"API key"中
+    publications = [ 'libraryDebug' ] //'MyPublication'与下面的publishing闭包里的名称对应
+    publish = true // 上传后立即发布到Bintray平台
+    pkg {
+        repo = mRepo //保留，表示上传bintray中的maven仓库
+        group = groupIdDefined
+        name = artifactIdDefined
+        licenses = ["Apache-2.0"]
+        vcsUrl = gitUrl
+        version {
+            name = versionDefined
+        }
+    }
+}
+
+// 构件文件和POM信息配置
+project.afterEvaluate {
+    publishing {
+        publications {
+            libraryRelease(MavenPublication) {
+                artifact bundleReleaseAar
+                artifact sourcesJar
+                artifact javadocJar
+                groupId "$groupIdDefined"
+                artifactId "$artifactIdDefined"
+                version "$versionDefined"
+                pom.withXml {
+                    def dependenciesNode = asNode().appendNode('dependencies')
+                    // Iterate over the implementation dependencies (we don't want the test ones), adding a <dependency> node for each
+                    configurations.implementation.allDependencies.withType(ModuleDependency) { ModuleDependency dp ->
+                        if (dp.version != "unspecified") { // 过滤项目内library引用
+                            def dependencyNode = dependenciesNode.appendNode('dependency')
+                            dependencyNode.appendNode('groupId', dp.group)
+                            dependencyNode.appendNode('artifactId', dp.name)
+                            dependencyNode.appendNode('version', dp.version)
+
+                            // for exclusions
+                            if (dp.excludeRules.size() > 0) {
+                                def exclusions = dependencyNode.appendNode('exclusions')
+                                dp.excludeRules.each { ExcludeRule ex ->
+                                    def exclusion = exclusions.appendNode('exclusion')
+                                    exclusion.appendNode('groupId', ex.group)
+                                    exclusion.appendNode('artifactId', ex.module)
+                                }
+                            }
+                        }
+                    }
+
+                    configurations.releaseApi.allDependencies.withType(ModuleDependency) { ModuleDependency dp ->
+                        if (dp.version != "unspecified") { // 过滤项目内library引用
+                            def dependencyNode = dependenciesNode.appendNode('dependency')
+                            dependencyNode.appendNode('groupId', dp.group)
+                            dependencyNode.appendNode('artifactId', dp.name)
+                            dependencyNode.appendNode('version', dp.version)
+
+                            // for exclusions
+                            if (dp.excludeRules.size() > 0) {
+                                def exclusions = dependencyNode.appendNode('exclusions')
+                                dp.excludeRules.each { ExcludeRule ex ->
+                                    def exclusion = exclusions.appendNode('exclusion')
+                                    exclusion.appendNode('groupId', ex.group)
+                                    exclusion.appendNode('artifactId', ex.module)
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            libraryDebug(MavenPublication) {
+                artifact bundleReleaseAar
+                artifact sourcesJar
+                artifact javadocJar
+                groupId "$groupIdDefined"
+                artifactId "$artifactIdDefined"
+                version "$versionDefined"
+                pom.withXml {
+                    def dependenciesNode = asNode().appendNode('dependencies')
+                    // Iterate over the implementation dependencies (we don't want the test ones), adding a <dependency> node for each
+                    configurations.implementation.allDependencies.withType(ModuleDependency) { ModuleDependency dp ->
+                        if (dp.version != "unspecified") { // 过滤项目内library引用
+                            def dependencyNode = dependenciesNode.appendNode('dependency')
+                            dependencyNode.appendNode('groupId', dp.group)
+                            dependencyNode.appendNode('artifactId', dp.name)
+                            dependencyNode.appendNode('version', dp.version)
+
+                            // for exclusions
+                            if (dp.excludeRules.size() > 0) {
+                                def exclusions = dependencyNode.appendNode('exclusions')
+                                dp.excludeRules.each { ExcludeRule ex ->
+                                    def exclusion = exclusions.appendNode('exclusion')
+                                    exclusion.appendNode('groupId', ex.group)
+                                    exclusion.appendNode('artifactId', ex.module)
+                                }
+                            }
+                        }
+                    }
+
+                    configurations.debugApi.allDependencies.withType(ModuleDependency) { ModuleDependency dp ->
+                        if (dp.version != "unspecified") { // 过滤项目内library引用
+                            def dependencyNode = dependenciesNode.appendNode('dependency')
+                            dependencyNode.appendNode('groupId', dp.group)
+                            dependencyNode.appendNode('artifactId', dp.name)
+                            dependencyNode.appendNode('version', dp.version)
+
+                            // for exclusions
+                            if (dp.excludeRules.size() > 0) {
+                                def exclusions = dependencyNode.appendNode('exclusions')
+                                dp.excludeRules.each { ExcludeRule ex ->
+                                    def exclusion = exclusions.appendNode('exclusion')
+                                    exclusion.appendNode('groupId', ex.group)
+                                    exclusion.appendNode('artifactId', ex.module)
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+// ./gradlew clean build bintrayUpload
+// ./gradlew bintrayUpload
+
+
+

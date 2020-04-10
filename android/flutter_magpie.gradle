@@ -1,0 +1,210 @@
+buildscript {
+    repositories {
+        google()
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.5.2'
+    }
+}
+
+android {
+    compileOptions {
+        sourceCompatibility 1.8
+        targetCompatibility 1.8
+    }
+}
+
+apply plugin: FlutterPlugin
+
+class FlutterPlugin implements Plugin<Project> {
+
+    private static final String MAVEN_REPO = "https://dl.bintray.com/hxingood123/flutter/";
+
+    // The platforms that can be passed to the `--Ptarget-platform` flag.
+    private static final String PLATFORM_ARM = "arm";
+    private static final String PLATFORM_ARM32 = "android-arm";
+    private static final String PLATFORM_ARM64 = "android-arm64";
+    private static final String PLATFORM_X86 = "android-x86";
+    private static final String PLATFORM_X86_64 = "android-x64";
+
+    // The ABI architectures.
+    private static final String ARCH_ARM = "armeabi";
+    private static final String ARCH_ARM32 = "armeabi-v7a";
+    private static final String ARCH_ARM64 = "arm64-v8a";
+    private static final String ARCH_X86 = "x86";
+    private static final String ARCH_X86_64 = "x86_64";
+
+    // Maps platforms to ABI architectures.
+    private static final Map PLATFORM_ARCH_MAP = [
+            (PLATFORM_ARM)   : ARCH_ARM,
+            (PLATFORM_ARM32) : ARCH_ARM32,
+            (PLATFORM_ARM64) : ARCH_ARM64,
+            (PLATFORM_X86)   : ARCH_X86,
+            (PLATFORM_X86_64): ARCH_X86_64,
+    ]
+
+    // The version code that gives each ABI a value.
+    // For each APK variant, use the following versions to override the version of the Universal APK.
+    // Otherwise, the Play Store will complain that the APK variants have the same version.
+    private static final Map ABI_VERSION = [
+            (ARCH_ARM32) : 1,
+            (ARCH_ARM64) : 2,
+            (ARCH_X86)   : 3,
+            (ARCH_X86_64): 4,
+            (ARCH_ARM)   : 5,
+    ]
+
+    // When split is enabled, multiple APKs are generated per each ABI.
+    private static final List DEFAULT_PLATFORMS = [
+            PLATFORM_ARM,
+            PLATFORM_ARM32,
+            PLATFORM_ARM64,
+    ]
+
+    private Project project
+    private String engineVersion
+
+    @Override
+    void apply(Project project) {
+        this.project = project
+        //获取引擎版本
+        engineVersion = "1.0.0-" + project.property('engineVersion')
+        print("engineVersion:" + engineVersion)
+        // By default, assembling APKs generates fat APKs if multiple platforms are passed.
+        // Configuring split per ABI allows to generate separate APKs for each abi.
+        // This is a noop when building a bundle.
+        if (shouldSplitPerAbi()) {
+            project.android {
+                splits {
+                    abi {
+                        // Enables building multiple APKs per ABI.
+                        enable true
+                        // Resets the list of ABIs that Gradle should create APKs for to none.
+                        reset()
+                        // Specifies that we do not want to also generate a universal APK that includes all ABIs.
+                        universalApk false
+                    }
+                }
+            }
+        }
+        getTargetPlatforms().each { targetArch ->
+            String abiValue = PLATFORM_ARCH_MAP[targetArch]
+            project.android {
+                if (shouldSplitPerAbi()) {
+                    splits {
+                        abi {
+                            include abiValue
+                        }
+                    }
+                }
+            }
+        }
+
+        // Add custom build types.
+        project.android.buildTypes {
+            profile {
+                initWith debug
+                if (it.hasProperty("matchingFallbacks")) {
+                    matchingFallbacks = ["debug", "release"]
+                }
+            }
+        }
+
+        project.android.buildTypes.each this.&addFlutterDependencies
+        project.android.buildTypes.whenObjectAdded this.&addFlutterDependencies
+    }
+
+    /**
+     * Adds the dependencies required by the Flutter project.
+     * This includes:
+     *    1. The embedding
+     *    2. libflutter.so
+     */
+    void addFlutterDependencies(buildType) {
+        String flutterBuildMode = buildModeFor(buildType)
+        if (!supportsBuildMode(flutterBuildMode)) {
+            return
+        }
+        String repository = useLocalEngine()
+                ? project.property('local-engine-repo')
+                : MAVEN_REPO
+
+        project.rootProject.allprojects {
+            repositories {
+                maven {
+                    url repository
+                }
+            }
+        }
+        // Add the embedding dependency.
+        addApiDependencies(project, buildType.name,
+                "io.flutter:flutter_embedding_$flutterBuildMode:$engineVersion")
+
+        List<String> platforms = getTargetPlatforms().collect()
+        // Debug mode includes x86 and x64, which are commonly used in emulators.
+        if (flutterBuildMode == "debug" && !useLocalEngine()) {
+            platforms.add("android-x86")
+            platforms.add("android-x64")
+        }
+        platforms.each { platform ->
+            String arch = PLATFORM_ARCH_MAP[platform].replace("-", "_")
+            // Add the `libflutter.so` dependency.
+            addApiDependencies(project, buildType.name,
+                    "io.flutter:${arch}_$flutterBuildMode:$engineVersion")
+        }
+    }
+
+    private List<String> getTargetPlatforms() {
+        return DEFAULT_PLATFORMS
+    }
+
+    private Boolean shouldSplitPerAbi() {
+        if (project.hasProperty('split-per-abi')) {
+            return project.property('split-per-abi').toBoolean()
+        }
+        return false;
+    }
+
+    private Boolean useLocalEngine() {
+        return project.hasProperty('local-engine-repo')
+    }
+
+
+    // Returns true if the build mode is supported by the current call to Gradle.
+    // This only relevant when using a local engine. Because the engine
+    // is built for a specific mode, the call to Gradle must match that mode.
+    private Boolean supportsBuildMode(String flutterBuildMode) {
+        if (!useLocalEngine()) {
+            return true;
+        }
+        assert project.hasProperty('local-engine-build-mode')
+        // Don't configure dependencies for a build mode that the local engine
+        // doesn't support.
+        return project.property('local-engine-build-mode') == flutterBuildMode
+    }
+
+
+    private static void addApiDependencies(Project project, String variantName, Object dependency, Closure config = null) {
+        String configuration;
+        configuration = "${variantName}Api";
+        project.dependencies.add(configuration, dependency, config)
+    }
+
+    /**
+     * Returns a Flutter build mode suitable for the specified Android buildType.
+     *
+     * Note: The BuildType DSL type is not public, and is therefore omitted from the signature.
+     *
+     * @return "debug", "profile", or "release" (fall-back).
+     */
+    private static String buildModeFor(buildType) {
+        if (buildType.name == "profile") {
+            return "profile"
+        } else if (buildType.debuggable) {
+            return "debug"
+        }
+        return "release"
+    }
+}
+

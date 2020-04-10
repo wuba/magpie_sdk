@@ -1,0 +1,23 @@
+
+//bintrayrelease方式上传jcenter
+apply plugin: "guru.stefma.bintrayrelease"
+
+//当前这个bintrayRelease依赖于AndroidArtifacts
+androidArtifact{
+    artifactId = "bintrayrelease"
+}
+
+publish{
+    userOrg = 'hxingood123' //bintray用户名
+    repoName = 'magpie'  //库名
+    group = 'com.wuba.magpie'
+    artifactId = 'magpie_debug'  //项目名
+    version = '0.0.3'
+    desc = 'native-flutter-SDK' //描述
+    website = 'https://github.com/hyman/basetools'
+}
+
+
+
+//执行命令 ./gradlew clean build bintrayUpload -PbintrayUser=hxingood123 -PbintrayKey=xxx -PdryRun=false
+//执行命令 ./gradlew bintrayUpload -PbintrayUser=hxingood123 -PbintrayKey=xxx -PdryRun=false

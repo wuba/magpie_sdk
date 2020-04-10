@@ -1,0 +1,49 @@
+buildscript {
+    repositories {
+        google()
+        jcenter()
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.5.0'
+        classpath "guru.stefma.bintrayrelease:bintrayrelease:1.1.2"
+//        classpath "org.jetbrains.dokka:dokka-gradle-plugin:0.9.17"
+//        classpath "org.jfrog.buildinfo:build-info-extractor-gradle:3.1.1"
+//        classpath "com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.4"
+    }
+
+
+}
+
+
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+        maven { url "https://dl.bintray.com/hxingood123/magpie/" }
+        maven { url "https://dl.bintray.com/hxingood123/flutter/" }
+        maven { url "https://maven.aliyun.com/repository/jcenter" }
+        maven { url "http://developer.huawei.com/repo/" }
+    }
+
+    tasks.withType(Javadoc) {
+        options {
+            encoding "UTF-8"
+            charSet 'UTF-8'
+            links "http://docs.oracle.com/javase/7/docs/api"
+        }
+    }
+}
+
+rootProject.buildDir = '../build'
+subprojects {
+    project.buildDir = "${rootProject.buildDir}/${project.name}"
+}
+subprojects {
+    project.evaluationDependsOn(':app')
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

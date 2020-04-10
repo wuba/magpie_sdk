@@ -1,0 +1,489 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 51;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1A373D5A23C4717F00E9D296 /* PlatformRouterImp.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A373D4C23C4717F00E9D296 /* PlatformRouterImp.m */; };
+		1A373D5C23C4717F00E9D296 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A373D4E23C4717F00E9D296 /* ViewController.m */; };
+		1A373D5D23C4717F00E9D296 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A373D4F23C4717F00E9D296 /* SceneDelegate.m */; };
+		1A373D5E23C4717F00E9D296 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A373D5023C4717F00E9D296 /* LaunchScreen.storyboard */; };
+		1A373D5F23C4717F00E9D296 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A373D5223C4717F00E9D296 /* Main.storyboard */; };
+		1A373D6023C4717F00E9D296 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A373D5423C4717F00E9D296 /* main.m */; };
+		1A373D6123C4717F00E9D296 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A373D5523C4717F00E9D296 /* AppDelegate.m */; };
+		1A373D6223C4717F00E9D296 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1A373D5723C4717F00E9D296 /* Info.plist */; };
+		1AC3985623CEB2A70052F9EB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1AC3985523CEB2A70052F9EB /* Assets.xcassets */; };
+		1AFC2B6723C851F8007B69BA /* DemoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AFC2B6623C851F8007B69BA /* DemoTableViewCell.m */; };
+		F4B7FB59B8E80E1DC373C8D2 /* libPods-MagpieDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9652B654A23B1C9C2A0B9947 /* libPods-MagpieDemo.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		006F21C2F96477CE67920246 /* Pods-FlutterNative.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlutterNative.debug.xcconfig"; path = "Target Support Files/Pods-FlutterNative/Pods-FlutterNative.debug.xcconfig"; sourceTree = "<group>"; };
+		1A373D4B23C4717F00E9D296 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		1A373D4C23C4717F00E9D296 /* PlatformRouterImp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlatformRouterImp.m; sourceTree = "<group>"; };
+		1A373D4E23C4717F00E9D296 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		1A373D4F23C4717F00E9D296 /* SceneDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SceneDelegate.m; sourceTree = "<group>"; };
+		1A373D5123C4717F00E9D296 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		1A373D5323C4717F00E9D296 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		1A373D5423C4717F00E9D296 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		1A373D5523C4717F00E9D296 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		1A373D5623C4717F00E9D296 /* PlatformRouterImp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlatformRouterImp.h; sourceTree = "<group>"; };
+		1A373D5723C4717F00E9D296 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1A373D5823C4717F00E9D296 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		1A373D5923C4717F00E9D296 /* SceneDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SceneDelegate.h; sourceTree = "<group>"; };
+		1A51B55923975CF20090EB37 /* MagpieBridge.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MagpieBridge.framework; path = ../../ios/Framework/MagpieBridge.framework; sourceTree = "<group>"; };
+		1AC3985523CEB2A70052F9EB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = MagpieDemo/Assets.xcassets; sourceTree = "<group>"; };
+		1AD410092387A06F00472F99 /* MagpieDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MagpieDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1AFC2B6523C851F8007B69BA /* DemoTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DemoTableViewCell.h; sourceTree = "<group>"; };
+		1AFC2B6623C851F8007B69BA /* DemoTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DemoTableViewCell.m; sourceTree = "<group>"; };
+		474B46304398001677752EFE /* Pods-MagpieDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MagpieDemo.debug.xcconfig"; path = "Target Support Files/Pods-MagpieDemo/Pods-MagpieDemo.debug.xcconfig"; sourceTree = "<group>"; };
+		9652B654A23B1C9C2A0B9947 /* libPods-MagpieDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MagpieDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DB256C1AEDC1A84173E16C44 /* Pods-FlutterNative.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlutterNative.release.xcconfig"; path = "Target Support Files/Pods-FlutterNative/Pods-FlutterNative.release.xcconfig"; sourceTree = "<group>"; };
+		E488A05ADB82F3D7F54189DB /* Pods-MagpieDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MagpieDemo.release.xcconfig"; path = "Target Support Files/Pods-MagpieDemo/Pods-MagpieDemo.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1AD410062387A06F00472F99 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F4B7FB59B8E80E1DC373C8D2 /* libPods-MagpieDemo.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1A373D4A23C4717F00E9D296 /* MagpieDemo */ = {
+			isa = PBXGroup;
+			children = (
+				1A373D4B23C4717F00E9D296 /* AppDelegate.h */,
+				1A373D5523C4717F00E9D296 /* AppDelegate.m */,
+				1A373D5823C4717F00E9D296 /* ViewController.h */,
+				1A373D4E23C4717F00E9D296 /* ViewController.m */,
+				1AFC2B6523C851F8007B69BA /* DemoTableViewCell.h */,
+				1AFC2B6623C851F8007B69BA /* DemoTableViewCell.m */,
+				1A373D5923C4717F00E9D296 /* SceneDelegate.h */,
+				1A373D4F23C4717F00E9D296 /* SceneDelegate.m */,
+				1A373D5623C4717F00E9D296 /* PlatformRouterImp.h */,
+				1A373D4C23C4717F00E9D296 /* PlatformRouterImp.m */,
+				1A373D5023C4717F00E9D296 /* LaunchScreen.storyboard */,
+				1A373D5223C4717F00E9D296 /* Main.storyboard */,
+				1A373D5423C4717F00E9D296 /* main.m */,
+				1A373D5723C4717F00E9D296 /* Info.plist */,
+			);
+			path = MagpieDemo;
+			sourceTree = "<group>";
+		};
+		1AD410002387A06F00472F99 = {
+			isa = PBXGroup;
+			children = (
+				1AC3985523CEB2A70052F9EB /* Assets.xcassets */,
+				1A373D4A23C4717F00E9D296 /* MagpieDemo */,
+				1AD4100A2387A06F00472F99 /* Products */,
+				F41345A61F8791FB70712EAE /* Pods */,
+				8D3F509B9E505475BC338A30 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		1AD4100A2387A06F00472F99 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1AD410092387A06F00472F99 /* MagpieDemo.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8D3F509B9E505475BC338A30 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1A51B55923975CF20090EB37 /* MagpieBridge.framework */,
+				9652B654A23B1C9C2A0B9947 /* libPods-MagpieDemo.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F41345A61F8791FB70712EAE /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				006F21C2F96477CE67920246 /* Pods-FlutterNative.debug.xcconfig */,
+				DB256C1AEDC1A84173E16C44 /* Pods-FlutterNative.release.xcconfig */,
+				474B46304398001677752EFE /* Pods-MagpieDemo.debug.xcconfig */,
+				E488A05ADB82F3D7F54189DB /* Pods-MagpieDemo.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1AD410082387A06F00472F99 /* MagpieDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1AD410222387A07000472F99 /* Build configuration list for PBXNativeTarget "MagpieDemo" */;
+			buildPhases = (
+				66F137FEAFDF22269AFED89D /* [CP] Check Pods Manifest.lock */,
+				1AD410052387A06F00472F99 /* Sources */,
+				1AD410062387A06F00472F99 /* Frameworks */,
+				1AD410072387A06F00472F99 /* Resources */,
+				5199FC2F8B10DACCDA7A1230 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MagpieDemo;
+			productName = FlutterNative;
+			productReference = 1AD410092387A06F00472F99 /* MagpieDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		1AD410012387A06F00472F99 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1120;
+				ORGANIZATIONNAME = "张达理";
+				TargetAttributes = {
+					1AD410082387A06F00472F99 = {
+						CreatedOnToolsVersion = 11.2.1;
+					};
+				};
+			};
+			buildConfigurationList = 1AD410042387A06F00472F99 /* Build configuration list for PBXProject "MagpieDemo" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 1AD410002387A06F00472F99;
+			productRefGroup = 1AD4100A2387A06F00472F99 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1AD410082387A06F00472F99 /* MagpieDemo */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1AD410072387A06F00472F99 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1A373D5F23C4717F00E9D296 /* Main.storyboard in Resources */,
+				1A373D5E23C4717F00E9D296 /* LaunchScreen.storyboard in Resources */,
+				1AC3985623CEB2A70052F9EB /* Assets.xcassets in Resources */,
+				1A373D6223C4717F00E9D296 /* Info.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		5199FC2F8B10DACCDA7A1230 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MagpieDemo/Pods-MagpieDemo-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MagpieDemo/Pods-MagpieDemo-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MagpieDemo/Pods-MagpieDemo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		66F137FEAFDF22269AFED89D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MagpieDemo-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1AD410052387A06F00472F99 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1A373D5C23C4717F00E9D296 /* ViewController.m in Sources */,
+				1A373D5A23C4717F00E9D296 /* PlatformRouterImp.m in Sources */,
+				1AFC2B6723C851F8007B69BA /* DemoTableViewCell.m in Sources */,
+				1A373D5D23C4717F00E9D296 /* SceneDelegate.m in Sources */,
+				1A373D6123C4717F00E9D296 /* AppDelegate.m in Sources */,
+				1A373D6023C4717F00E9D296 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		1A373D5023C4717F00E9D296 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1A373D5123C4717F00E9D296 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		1A373D5223C4717F00E9D296 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1A373D5323C4717F00E9D296 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		1AD410202387A07000472F99 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		1AD410212387A07000472F99 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		1AD410232387A07000472F99 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 474B46304398001677752EFE /* Pods-MagpieDemo.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = EFH63YDHFL;
+				ENABLE_BITCODE = NO;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/FMDB\"",
+					"\"${PODS_ROOT}/Headers/Public/MagpieBridge\"",
+					"\"${PODS_ROOT}/Headers/Public/Source\"",
+					"$(SDKROOT)/usr/include/libxml2",
+				);
+				INFOPLIST_FILE = "$(SRCROOT)/MagpieDemo/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-framework",
+					"\"CoreGraphics\"",
+					"-framework",
+					"\"Foundation\"",
+					"-framework",
+					"\"UIKit\"",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.58tongzhenclient.iphone;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = UTown_dev;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = (
+					"${SRCROOT}/**",
+					"${PODS_ROOT}/**",
+				);
+			};
+			name = Debug;
+		};
+		1AD410242387A07000472F99 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E488A05ADB82F3D7F54189DB /* Pods-MagpieDemo.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = EFH63YDHFL;
+				ENABLE_BITCODE = NO;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/FMDB\"",
+					"\"${PODS_ROOT}/Headers/Public/MagpieBridge\"",
+					"\"${PODS_ROOT}/Headers/Public/Source\"",
+					"$(SDKROOT)/usr/include/libxml2",
+				);
+				INFOPLIST_FILE = "$(SRCROOT)/MagpieDemo/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-framework",
+					"\"CoreGraphics\"",
+					"-framework",
+					"\"Foundation\"",
+					"-framework",
+					"\"UIKit\"",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.58tongzhenclient.iphone;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = UTown_distr;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = (
+					"${SRCROOT}/**",
+					"${PODS_ROOT}/**",
+				);
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1AD410042387A06F00472F99 /* Build configuration list for PBXProject "MagpieDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1AD410202387A07000472F99 /* Debug */,
+				1AD410212387A07000472F99 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1AD410222387A07000472F99 /* Build configuration list for PBXNativeTarget "MagpieDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1AD410232387A07000472F99 /* Debug */,
+				1AD410242387A07000472F99 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 1AD410012387A06F00472F99 /* Project object */;
+}

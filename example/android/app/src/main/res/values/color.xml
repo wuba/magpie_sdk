@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <!-- 标题栏的文字颜色 -->
+    <color name="titlebar_text_color">@color/white</color>
+
+    <color name="white">#FFFFFFFF</color>
+
+    <color name="gray_d4d4d4">#ffd4d4d4</color>
+
+
+    <color name="orange_F59A23">#F59A23</color>
+
+    <!--<color name="add_customer_editText_textcolor">#333333</color>-->
+</resources>

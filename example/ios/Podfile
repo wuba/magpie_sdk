@@ -1,0 +1,38 @@
+
+platform :ios, '8.0'
+
+#配置Magpie和FlutterEngine环境
+ENV['debug'] = '0'
+
+def load_workflow_podhelper (path,tag=nil)
+  if (path.start_with?('git')||path.start_with?('http'))
+    if !tag
+      puts('远端依赖必须指定branch或tag ! ')
+      return
+    end
+    workflow_dir="Pods/workFlow_temp"
+    git_path="git clone -b #{tag} #{path} #{workflow_dir}"
+    system "rm -rf #{workflow_dir}"
+    system "mkdir -p #{workflow_dir}"
+    system git_path
+    path="#{workflow_dir}/product"
+  end
+  load File.join(path,'podhelper.rb')
+end
+#load_workflow_podhelper('git@git.google.com','1.2.3')
+load_workflow_podhelper('Pods/workFlow_temp/product')
+
+target 'MagpieDemo' do
+
+  pod 'Source', :path => 'Source'
+
+  #pod 'MagpieBridge', :path => '../../ios/lib'
+  pod 'MagpieBridge', :path => '../../ios/code'
+
+  pod 'Flutter', :path => '../../ios/flutter'
+
+  #pod 'FlutterBusiness', :path => '../../ios/product'
+
+  install_flutter_business_pods
+
+end

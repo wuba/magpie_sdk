@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="LaunchTheme" parent="@android:style/Theme.Black.NoTitleBar">
+        <!-- Show a splash screen on the activity. Automatically removed when
+             Flutter draws its first frame -->
+        <item name="android:windowBackground">@drawable/launch_background</item>
+    </style>
+
+    <style name="AppThemeNew" parent="AppBaseTheme">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">#ff222222</item>
+        <item name="colorPrimaryDark">#ff000000</item>
+        <item name="colorAccent">#333333</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:windowBackground">@android:color/white</item>
+        <item name="android:backgroundDimEnabled">false</item>
+        <item name="android:colorBackground">@android:color/white</item>
+        <item name="android:colorForeground">@android:color/white</item>
+        <item name="android:dividerHeight">1px</item>
+        <item name="android:editTextColor">#312822</item>
+        <item name="android:windowFrame">@null</item><!-- 边框 -->
+        <item name="android:windowIsTranslucent">false</item>
+        <item name="android:textCursorDrawable">@null</item>
+        <item name="android:textColorHint">#111121</item>
+        <item name="android:textColor">#111121</item>
+        <item name="android:color">#111121</item>
+        <item name="android:textColorPrimary">#111121</item>
+        <item name="android:windowTranslucentStatus">true</item>
+    </style>
+
+    <style name="AppBaseTheme" parent="Theme.AppCompat.Light">
+
+    </style>
+
+    <style name="SplashTheme" parent="android:Theme">
+        <item name="android:windowBackground">@android:color/white</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.TransparentStausBar" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="windowActionBar">false</item>  //取消系统默认的actionBar
+        <item name="windowNoTitle">true</item>  //取消actionBar的标题
+        <item name="android:windowTranslucentStatus">true</item> //允许页面可以拉伸到顶部状态栏并且定义顶部状态栏透明，安卓4.4才有
+        <item name="android:windowTranslucentNavigation">true</item>//设置虚拟键透明
+    </style>
+
+</resources>

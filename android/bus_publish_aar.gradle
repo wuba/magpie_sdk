@@ -1,0 +1,159 @@
+apply plugin: 'maven-publish'
+
+publishing {
+
+    repositories {
+        maven {
+            url mavenConfig.snapshots.url
+            credentials {
+                username = mavenConfig.snapshots.username
+                password = mavenConfig.snapshots.password
+            }
+        }
+    }
+
+
+    publications {
+        xxx_module(MavenPublication) {
+            artifact "build/outputs/aar/xxx_module-release.aar"
+            groupId mavenConfig.groupId// groupId
+            artifactId xxxModule.artifactId // artifactId
+            version xxxModule.versionName
+            description xxxModule.descrp
+
+            pom.withXml {
+                def dependenciesNode = asNode().appendNode('dependencies')
+                configurations.compile.allDependencies.each {
+                    println 'it.name='+it.name+"  it.group="+it.group
+                    if (it.group != null && (it.name != null || "unspecified".equals(it.name)) && it.version != null) {
+                        println 'it.name='+it.name
+                        def dependencyNode = dependenciesNode.appendNode('dependency')
+                        dependencyNode.appendNode('groupId', it.group)
+                        dependencyNode.appendNode('artifactId', it.name)
+                        dependencyNode.appendNode('version', it.version)
+                        if (it.group == groupId && project.getRootProject().aarMap.contains(it.name)) {
+                            dependencyNode.appendNode('type', 'aar')
+                        }
+
+                    }
+                }
+
+                configurations.api.allDependencies.each {
+                    if (it.group != null && (it.name != null || "unspecified".equals(it.name)) && it.version != null) {
+
+                        def dependencyNode = dependenciesNode.appendNode('dependency')
+                        dependencyNode.appendNode('groupId', it.group)
+                        dependencyNode.appendNode('artifactId', it.name)
+                        dependencyNode.appendNode('version', it.version)
+                        if (it.group == groupId && project.getRootProject().aarMap.contains(it.name)) {
+                            dependencyNode.appendNode('type', 'aar')
+                        }
+
+                    }
+                }
+
+                configurations.implementation.allDependencies.each {
+                    if (it.group != null && (it.name != null || "unspecified".equals(it.name)) && it.version != null) {
+
+                        def dependencyNode = dependenciesNode.appendNode('dependency')
+                        dependencyNode.appendNode('groupId', it.group)
+                        dependencyNode.appendNode('artifactId', it.name)
+                        dependencyNode.appendNode('version', it.version)
+                        if (it.group == groupId && project.getRootProject().aarMap.contains(it.name)) {
+                            dependencyNode.appendNode('type', 'aar')
+                        }
+
+                    }
+                }
+
+
+
+                if (getGradle().startParameter.toString().contains("assembleDebug")) {
+                    configurations.debugCompile.allDependencies.each {
+                        if (it.group != null && (it.name != null || "unspecified".equals(it.name)) && it.version != null) {
+                            def dependencyNode = dependenciesNode.appendNode('dependency')
+                            dependencyNode.appendNode('groupId', it.group)
+                            dependencyNode.appendNode('artifactId', it.name)
+                            dependencyNode.appendNode('version', it.version)
+                            if (it.group == groupId && project.getRootProject().aarMap.contains(it.name)) {
+                                dependencyNode.appendNode('type', 'aar')
+                            }
+
+                        }
+                    }
+                    configurations.debugApi.allDependencies.each {
+                        if (it.group != null && (it.name != null || "unspecified".equals(it.name)) && it.version != null) {
+
+                            def dependencyNode = dependenciesNode.appendNode('dependency')
+                            dependencyNode.appendNode('groupId', it.group)
+                            dependencyNode.appendNode('artifactId', it.name)
+                            dependencyNode.appendNode('version', it.version)
+                            if (it.group == groupId && project.getRootProject().aarMap.contains(it.name)) {
+                                dependencyNode.appendNode('type', 'aar')
+                            }
+
+                        }
+                    }
+
+                    configurations.debugImplementation.allDependencies.each {
+                        if (it.group != null && (it.name != null || "unspecified".equals(it.name)) && it.version != null) {
+
+                            def dependencyNode = dependenciesNode.appendNode('dependency')
+                            dependencyNode.appendNode('groupId', it.group)
+                            dependencyNode.appendNode('artifactId', it.name)
+                            dependencyNode.appendNode('version', it.version)
+                            if (it.group == groupId && project.getRootProject().aarMap.contains(it.name)) {
+                                dependencyNode.appendNode('type', 'aar')
+                            }
+
+                        }
+                    }
+
+
+                } else {
+                    configurations.releaseCompile.allDependencies.each {
+                        if (it.group != null && (it.name != null || "unspecified".equals(it.name)) && it.version != null) {
+                            def dependencyNode = dependenciesNode.appendNode('dependency')
+                            dependencyNode.appendNode('groupId', it.group)
+                            dependencyNode.appendNode('artifactId', it.name)
+                            dependencyNode.appendNode('version', it.version)
+                            if (it.group == groupId && project.getRootProject().aarMap.contains(it.name)) {
+                                dependencyNode.appendNode('type', 'aar')
+                            }
+
+                        }
+                    }
+
+                    configurations.releaseApi.allDependencies.each {
+                        if (it.group != null && (it.name != null || "unspecified".equals(it.name)) && it.version != null) {
+
+                            def dependencyNode = dependenciesNode.appendNode('dependency')
+                            dependencyNode.appendNode('groupId', it.group)
+                            dependencyNode.appendNode('artifactId', it.name)
+                            dependencyNode.appendNode('version', it.version)
+                            if (it.group == groupId && project.getRootProject().aarMap.contains(it.name)) {
+                                dependencyNode.appendNode('type', 'aar')
+                            }
+
+                        }
+                    }
+
+                    configurations.releaseImplementation.allDependencies.each {
+                        if (it.group != null && (it.name != null || "unspecified".equals(it.name)) && it.version != null) {
+
+                            def dependencyNode = dependenciesNode.appendNode('dependency')
+                            dependencyNode.appendNode('groupId', it.group)
+                            dependencyNode.appendNode('artifactId', it.name)
+                            dependencyNode.appendNode('version', it.version)
+                            if (it.group == groupId && project.getRootProject().aarMap.contains(it.name)) {
+                                dependencyNode.appendNode('type', 'aar')
+                            }
+
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+}

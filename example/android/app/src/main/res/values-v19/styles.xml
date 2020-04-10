@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="AppTheme.TransparentStausBar" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="windowActionBar">false</item>  //取消系统默认的actionBar
+        <item name="windowNoTitle">true</item>  //取消actionBar的标题
+        <item name="android:windowTranslucentStatus">true</item> //允许页面可以拉伸到顶部状态栏并且定义顶部状态栏透明，安卓4.4才有
+        <item name="android:windowTranslucentNavigation">true</item>//设置虚拟键透明
+    </style>
+    
+</resources>

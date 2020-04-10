@@ -1,0 +1,143 @@
+apply plugin: 'maven-publish'
+apply plugin: 'com.jfrog.artifactory'
+apply plugin: 'com.jfrog.bintray'
+
+
+////生成sourceJar和javaDocJar构件
+//task sourcesJar(type: Jar) {
+//    from android.sourceSets.main.java.srcDirs
+//    classifier = 'sources'
+//}
+//
+//task javadoc(type: Javadoc) {
+//    failOnError false
+//    source = android.sourceSets.main.java.sourceFiles
+//    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+//    classpath += configurations.compile
+//}
+//
+//task javadocJar(type: Jar, dependsOn: javadoc) {
+//    classifier = 'javadoc'
+//    from javadoc.destinationDir
+//}
+//
+//artifacts {
+//    archives sourcesJar
+//    archives javadocJar
+//
+//}
+
+
+// 定义pom文件参数
+//def mRepo = "flutter"
+//def gitUrl = 'https://github.com/hyman/basetools'   // Git仓库的url
+//def groupIdDefined = "io.flutter"//
+
+//def artifactIdDefined = "armeabi_v7a_debug"
+//def versionDefined = "1.0.0-2994f7e1e682039464cb25e31a78b86a3c59b695"
+//def specifyJar = "./libs/armeabi_v7a_debug-1.0.0-2994f7e1e682039464cb25e31a78b86a3c59b695.jar"
+
+//def artifactIdDefined = "armeabi_debug"
+//def versionDefined = "1.0.0-2994f7e1e682039464cb25e31a78b86a3c59b695"
+//def specifyJar = "./libs/armeabi_debug-1.0.0-2994f7e1e682039464cb25e31a78b86a3c59b695.jar"
+
+//def artifactIdDefined = "arm64_v8a_debug"
+//def versionDefined = "1.0.0-2994f7e1e682039464cb25e31a78b86a3c59b695"
+//def specifyJar = "./libs/arm64_v8a_debug-1.0.0-2994f7e1e682039464cb25e31a78b86a3c59b695.jar"
+
+//def artifactIdDefined = "x86_debug"
+//def versionDefined = "1.0.0-2994f7e1e682039464cb25e31a78b86a3c59b695"
+//def specifyJar = "./libs/x86_debug-1.0.0-2994f7e1e682039464cb25e31a78b86a3c59b695.jar"
+
+//def artifactIdDefined = "flutter_embedding_debug"
+//def versionDefined = "1.0.0-2994f7e1e682039464cb25e31a78b86a3c59b695"
+//def specifyJar = "./libs/flutter_embedding_debug-1.0.0-2994f7e1e682039464cb25e31a78b86a3c59b695.jar"
+
+//def artifactIdDefined = "armeabi_v7a_profile"
+//def versionDefined = "1.0.0-2994f7e1e682039464cb25e31a78b86a3c59b695"
+//def specifyJar = "./libs/armeabi_v7a_profile-1.0.0-2994f7e1e682039464cb25e31a78b86a3c59b695.jar"
+
+//def artifactIdDefined = "armeabi_v7a_release"
+//def versionDefined = "1.0.0-2994f7e1e682039464cb25e31a78b86a3c59b695"
+//def specifyJar = "./libs/armeabi_v7a_release-1.0.0-2994f7e1e682039464cb25e31a78b86a3c59b695.jar"
+
+//def artifactIdDefined = "armeabi_profile"
+//def versionDefined = "1.0.0-2994f7e1e682039464cb25e31a78b86a3c59b695"
+//def specifyJar = "./libs/armeabi_profile-1.0.0-2994f7e1e682039464cb25e31a78b86a3c59b695.jar"
+
+//def artifactIdDefined = "armeabi_release"
+//def versionDefined = "1.0.0-2994f7e1e682039464cb25e31a78b86a3c59b695"
+//def specifyJar = "./libs/armeabi_release-1.0.0-2994f7e1e682039464cb25e31a78b86a3c59b695.jar"
+
+//def artifactIdDefined = "arm64_v8a_profile"
+//def versionDefined = "1.0.0-2994f7e1e682039464cb25e31a78b86a3c59b695"
+//def specifyJar = "./libs/arm64_v8a_profile-1.0.0-2994f7e1e682039464cb25e31a78b86a3c59b695.jar"
+
+//def artifactIdDefined = "arm64_v8a_release"
+//def versionDefined = "1.0.0-2994f7e1e682039464cb25e31a78b86a3c59b695"
+//def specifyJar = "./libs/arm64_v8a_release-1.0.0-2994f7e1e682039464cb25e31a78b86a3c59b695.jar"
+
+//def artifactIdDefined = "flutter_embedding_release"
+//def versionDefined = "1.0.0-2994f7e1e682039464cb25e31a78b86a3c59b695"
+//def specifyJar = "./libs/flutter_embedding_release-1.0.0-2994f7e1e682039464cb25e31a78b86a3c59b695.jar"
+
+
+
+def mRepo = "magpie"
+def gitUrl = 'https://github.com/hyman/basetools'   // Git仓库的url
+def groupIdDefined = "com.wuba.magpie"//
+
+def artifactIdDefined = "magpie_flutter_debug_default"
+def versionDefined = "0.0.1"
+def specifyJar = "./libs/magpie_flutter_debug_default-0.0.1.aar"
+
+
+bintray {
+    user = 'hxingood123'
+    key = 'xxx' //在"edit profile"的"API key"中
+    publications = [ 'MyPublication' ] //'MyPublication'与下面的publishing闭包里的名称对应
+    publish = true // 上传后立即发布到Bintray平台
+    pkg {
+        repo = mRepo //保留，表示上传bintray中的maven仓库
+        group = groupIdDefined
+        name = artifactIdDefined
+        licenses = ["Apache-2.0"]
+        vcsUrl = gitUrl
+        version {
+            name = versionDefined
+        }
+    }
+}
+
+// 构件文件和POM信息配置
+publishing {
+    publications {
+        MyPublication(MavenPublication) {
+            //artifact("$buildDir/outputs/aar/magpie-release.aar")
+            artifact("$specifyJar")
+//            artifact sourcesJar
+//            artifact javadocJar
+            groupId "$groupIdDefined"
+            artifactId "$artifactIdDefined"
+                version "$versionDefined"
+//            pom.withXml {
+//                def dependenciesNode = asNode().appendNode('dependencies')
+//                // Iterate over the implementation dependencies (we don't want the test ones), adding a <dependency> node for each
+//                configurations.implementation.allDependencies.each {
+//                    // Ensure dependencies such as fileTree are not included in the pom.
+//                    if (it.name != 'unspecified') {
+//                        def dependencyNode = dependenciesNode.appendNode('dependency')
+//                        dependencyNode.appendNode('groupId', it.group)
+//                        dependencyNode.appendNode('artifactId', it.name)
+//                        dependencyNode.appendNode('version', it.version)
+//                    }
+//                }
+//            }
+        }
+    }
+}
+
+//./gradlew clean build bintrayUpload
+//./gradlew bintrayUpload
+
+

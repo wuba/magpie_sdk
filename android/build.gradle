@@ -1,0 +1,190 @@
+group 'com.wuba.magpie'
+version '1.0.0'
+
+apply plugin: 'com.android.library'
+apply from: "flutter_magpie.gradle"
+
+repositories {
+    flatDir {
+        dirs 'libs'
+    }
+}
+
+buildscript {
+    repositories {
+        google()
+        jcenter()
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.5.0'
+        classpath "org.jfrog.buildinfo:build-info-extractor-gradle:3.1.1"
+        classpath "com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.4"
+    }
+}
+
+rootProject.allprojects {
+    repositories {
+        google()
+        jcenter()
+    }
+}
+
+apply plugin: 'maven-publish'
+//gradle publishlibraryReleasePublicationToMavenRepository
+//gradle publishlibraryDebugPublicationToMavenRepository
+//project.afterEvaluate {
+//    publishing {
+//        publications {
+//            libraryRelease(MavenPublication) {
+//                artifact bundleReleaseAar
+//                groupId 'com.wuba.magpie'
+//                artifactId 'magpie_release'
+//                version '1.0.2'
+//
+//                pom.withXml {
+//                    def dependenciesNode = asNode().appendNode('dependencies')
+//                    configurations.implementation.allDependencies.withType(ModuleDependency) { ModuleDependency dp ->
+//                        if (dp.version != "unspecified") { // 过滤项目内library引用
+//                            def dependencyNode = dependenciesNode.appendNode('dependency')
+//                            dependencyNode.appendNode('groupId', dp.group)
+//                            dependencyNode.appendNode('artifactId', dp.name)
+//                            dependencyNode.appendNode('version', dp.version)
+//
+//                            // for exclusions
+//                            if (dp.excludeRules.size() > 0) {
+//                                def exclusions = dependencyNode.appendNode('exclusions')
+//                                dp.excludeRules.each { ExcludeRule ex ->
+//                                    def exclusion = exclusions.appendNode('exclusion')
+//                                    exclusion.appendNode('groupId', ex.group)
+//                                    exclusion.appendNode('artifactId', ex.module)
+//                                }
+//                            }
+//                        }
+//                    }
+//                    configurations.releaseApi.allDependencies.withType(ModuleDependency) { ModuleDependency dp ->
+//                        if (dp.version != "unspecified") { // 过滤项目内library引用
+//                            def dependencyNode = dependenciesNode.appendNode('dependency')
+//                            dependencyNode.appendNode('groupId', dp.group)
+//                            dependencyNode.appendNode('artifactId', dp.name)
+//                            dependencyNode.appendNode('version', dp.version)
+//
+//                            // for exclusions
+//                            if (dp.excludeRules.size() > 0) {
+//                                def exclusions = dependencyNode.appendNode('exclusions')
+//                                dp.excludeRules.each { ExcludeRule ex ->
+//                                    def exclusion = exclusions.appendNode('exclusion')
+//                                    exclusion.appendNode('groupId', ex.group)
+//                                    exclusion.appendNode('artifactId', ex.module)
+//                                }
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+//            libraryDebug(MavenPublication) {
+//                artifact bundleReleaseAar
+//                groupId 'com.wuba.magpie'
+//                artifactId 'magpie_debug'
+//                version '1.0.1'
+//
+//                pom.withXml {
+//                    def dependenciesNode = asNode().appendNode('dependencies')
+//                    configurations.implementation.allDependencies.withType(ModuleDependency) { ModuleDependency dp ->
+//                        if (dp.version != "unspecified") { // 过滤项目内library引用
+//                            def dependencyNode = dependenciesNode.appendNode('dependency')
+//                            dependencyNode.appendNode('groupId', dp.group)
+//                            dependencyNode.appendNode('artifactId', dp.name)
+//                            dependencyNode.appendNode('version', dp.version)
+//
+//                            // for exclusions
+//                            if (dp.excludeRules.size() > 0) {
+//                                def exclusions = dependencyNode.appendNode('exclusions')
+//                                dp.excludeRules.each { ExcludeRule ex ->
+//                                    def exclusion = exclusions.appendNode('exclusion')
+//                                    exclusion.appendNode('groupId', ex.group)
+//                                    exclusion.appendNode('artifactId', ex.module)
+//                                }
+//                            }
+//                        }
+//                    }
+//                    configurations.debugApi.allDependencies.withType(ModuleDependency) { ModuleDependency dp ->
+//                        if (dp.version != "unspecified") { // 过滤项目内library引用
+//                            def dependencyNode = dependenciesNode.appendNode('dependency')
+//                            dependencyNode.appendNode('groupId', dp.group)
+//                            dependencyNode.appendNode('artifactId', dp.name)
+//                            dependencyNode.appendNode('version', dp.version)
+//
+//                            // for exclusions
+//                            if (dp.excludeRules.size() > 0) {
+//                                def exclusions = dependencyNode.appendNode('exclusions')
+//                                dp.excludeRules.each { ExcludeRule ex ->
+//                                    def exclusion = exclusions.appendNode('exclusion')
+//                                    exclusion.appendNode('groupId', ex.group)
+//                                    exclusion.appendNode('artifactId', ex.module)
+//                                }
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//
+//        repositories {
+//            maven {
+//                url "xxx"
+//                credentials {
+//                    username=''
+//                    password = ''
+//                }
+//            }
+//        }
+//    }
+//}
+
+android {
+    compileSdkVersion 28
+
+    defaultConfig {
+        minSdkVersion 16
+        targetSdkVersion 28
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    lintOptions {
+        disable 'InvalidPackage'
+        abortOnError false
+    }
+
+    buildTypes {
+        release {
+            // TODO: Add your own signing config for the release build.
+            // Signing with the debug keys for now, so `flutter run --release` works.
+            signingConfig signingConfigs.debug
+        }
+        debug {
+
+            signingConfig signingConfigs.debug
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+}
+
+dependencies {
+    api 'com.android.support:appcompat-v7:28.0.0'
+    api 'com.android.support:support-v4:28.0.0'
+    api 'com.android.support:design:28.0.0'
+    api 'android.arch.lifecycle:common-java8:1.1.1'
+    implementation 'com.alibaba:fastjson:1.2.9'
+    implementation 'io.reactivex:rxandroid:1.2.1'
+    implementation 'io.reactivex:rxjava:1.1.6'
+}
+
+//apply from: "bintrayUpload.gradle"
+apply from: "bintrayPluginUpload.gradle"
+//apply from: "bintrayPluginSDKUpload.gradle"
