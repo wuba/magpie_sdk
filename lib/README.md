@@ -18,7 +18,7 @@
     dependencies:   
      magpie:     
      git:
-       url: https://github.com/wuba/magpie.git
+       url: https://github.com/wuba/magpie_sdk.git
 
 ### 直接集成
 将magpie lib内文件加入现有Dart工程中
