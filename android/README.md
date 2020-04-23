@@ -37,7 +37,7 @@ dependencies {
 }
 ```
 
-# 设置混
+# 设置混淆
 ``` java
 -keep class io.flutter.app.** {*;}
 -keep class io.flutter.plugin.** {*;}
