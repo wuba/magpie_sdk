@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:magpie/magpie.dart';
+import 'package:magpie/pub_plugins/flutter_boost/support/logger.dart';
 import 'simple_page_widgets.dart';
 import 'package:magpie/magpie_bridge.dart';
 
@@ -101,7 +102,14 @@ class FragmentRouteWidget extends StatelessWidget {
                 )),
             onTap: () =>
                 Magpie.singleton.open("native://nativePage",
-                  urlParams: {"query": {"aaa": "bbb"}}, exts:{"exts":"hello"}),
+                  urlParams: {"query": {"aaa": "bbb"}}, exts:{"exts":"hello"}).then((result){
+                  assert(result == null || result is Map);
+                  Map params = result;
+                  if(params == null){
+                    params = Map();
+                  }
+                  Logger.log("哈哈哈哈哈"+params.toString());
+                }),
           ),
         ],
       ),

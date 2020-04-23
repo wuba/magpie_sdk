@@ -82,7 +82,7 @@ public class PageRouter {
                 //跳转native页面
                 Intent intent = new Intent(context, NativePageActivity.class);
                 intent.putExtra(MagpieFlutterActivity.EXTRA_PARAMS,params);
-                context.startActivity(intent);
+                ((Activity)context).startActivityForResult(intent,100);
                 return true;
             }
 

@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:magpie/magpie_bridge.dart';
+import 'package:magpie/pub_plugins/flutter_boost/support/logger.dart';
 import 'platform_view.dart';
 import 'package:magpie/magpie.dart';
 
@@ -167,7 +168,15 @@ class _FlutterRouteWidgetState extends State<FlutterRouteWidget> {
                 onTap: () =>
                     Magpie.singleton.open("native://nativePage", urlParams: {
                   "query": {"aaa": "bbb"}
-                }),
+                }).then((result){
+                      assert(result == null || result is Map);
+                      Map params = result;
+                      if(params == null){
+                        params = Map();
+                      }
+                      showMyCupertinoDialog(context, "", params);
+                      Logger.log("native页面返回数据："+params.toString());
+                    }),
               ),
               InkWell(
                 child: Container(
@@ -187,7 +196,15 @@ class _FlutterRouteWidgetState extends State<FlutterRouteWidget> {
                 onTap: () =>
                     Magpie.singleton.open("sample://flutterPage", urlParams: {
                   "query": {"aaa": "bbb"}
-                }),
+                }).then((result){
+                      assert(result == null || result is Map);
+                      Map params = result;
+                      if(params == null){
+                        params = Map();
+                      }
+                      showMyCupertinoDialog(context, "", params);
+                      Logger.log("flutter页面返回数据："+params.toString());
+                    }),
               ),
               Platform.isAndroid
                   ? InkWell(

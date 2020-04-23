@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:fitsSystemWindows="true">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <ImageView
+            android:id="@+id/header_left"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:scaleType="center"
+            android:layout_alignParentLeft="true"
+            android:src="@mipmap/icon_back"
+            android:paddingLeft="5dp"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:id="@+id/header"
+            android:text="this is native page"
+            android:textColor="@android:color/holo_blue_dark"
+            android:textSize="28sp"
+            android:gravity="center"
+            android:layout_centerInParent="true"/>
+
+    </RelativeLayout>
+
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5px"
+        android:background="@color/gray_d4d4d4"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/open_flutter_page"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="open flutter page"
+                android:textSize="18sp"
+                android:gravity="center"
+                android:layout_margin="10dp"
+                android:padding="10dp"
+                android:background="@drawable/ui_comm_border_background"
+                android:layout_gravity="center"/>
+
+            <TextView
+                android:id="@+id/open_flutter_fragment_page"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="open flutter fragment page"
+                android:textSize="18sp"
+                android:gravity="center"
+                android:layout_margin="10dp"
+                android:padding="10dp"
+                android:background="@drawable/ui_comm_border_background"
+                android:layout_gravity="center"/>
+
+            <TextView
+                android:id="@+id/open_native_page"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="open native page"
+                android:background="@drawable/ui_comm_border_background"
+                android:textSize="18sp"
+                android:gravity="center"
+                android:layout_margin="10dp"
+                android:padding="10dp"
+                android:layout_gravity="center"/>
+
+
+<!--
+            <TextView
+                android:id="@+id/get_dart_data"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="get dart data"
+                android:background="@drawable/ui_comm_border_background"
+                android:textSize="18sp"
+                android:layout_margin="10dp"
+                android:padding="10dp"
+                android:gravity="center"
+                android:layout_gravity="center"/>-->
+
+        </LinearLayout>
+
+    </ScrollView>
+</LinearLayout>

@@ -1,5 +1,7 @@
 package com.wuba.magpie_example;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -7,6 +9,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
+import com.idlefish.flutterboost.interfaces.IFlutterViewContainer;
 import com.wuba.magpie.Magpie;
 
 import java.util.HashMap;
@@ -21,12 +24,17 @@ public class NativePageActivity extends AppCompatActivity implements View.OnClic
         getWindow().setBackgroundDrawableResource(R.color.white);
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.native_page);
+        setContentView(R.layout.native_page1);
         // 设置文字是否黑色
         View decorView = getWindow().getDecorView();
         int option = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
         decorView.setSystemUiVisibility(option);
         //StatusBarUtil.darkMode(this, true);
+
+        View header_left = findViewById(R.id.header_left);
+        header_left.setOnClickListener(this);
+
+
         View open_flutter_page = findViewById(R.id.open_flutter_page);
         View open_flutter_fragment_page = findViewById(R.id.open_flutter_fragment_page);
         View open_native_page = findViewById(R.id.open_native_page);
@@ -84,8 +92,23 @@ public class NativePageActivity extends AppCompatActivity implements View.OnClic
 //                });
 //                break;
 
+            case R.id.header_left:
+                finish();
+                break;
         }
 
+    }
+
+    @Override
+    public void finish() {
+        HashMap<String,String> result = new HashMap<>();
+        result.put("native_back_key","我是native数据");
+        Intent intent = new Intent();
+        if (result != null) {
+            intent.putExtra(IFlutterViewContainer.RESULT_KEY, result);
+        }
+        this.setResult(Activity.RESULT_OK, intent);
+        super.finish();
     }
 
     @Override
@@ -93,4 +116,8 @@ public class NativePageActivity extends AppCompatActivity implements View.OnClic
         super.onDestroy();
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
 }
