@@ -1,6 +1,6 @@
 name: magpie_example
 description: Demonstrates how to use the magpie plugin.
-publish_to: 'none'
+#publish_to: 'none'
 
 environment:
   sdk: ">=2.1.0 <3.0.0"
