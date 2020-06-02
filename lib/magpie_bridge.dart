@@ -47,7 +47,7 @@ class MagpieBridge {
     @param params 参数
     @param callBack Native侧返回数据的回调
   */
-  void sendDataRequestToNative(String name, Map params,MagpieCallBack callBack){
+  Future<T> sendDataRequestToNative<T>(String name, Map params,MagpieCallBack callBack){
     this.sendMessageToNativeWithCallBack('__magpie_data__', name, params, callBack,null);
   }
   /*
@@ -56,7 +56,7 @@ class MagpieBridge {
     @param params 参数
     @param callBack Native侧的回调
   */
-  void sendLogToNative(String name, Map params,MagpieCallBack callBack){
+  Future<T> sendLogToNative<T>(String name, Map params,MagpieCallBack callBack){
     this.sendMessageToNativeWithCallBack('__magpie_log__', name, params, callBack,null);
   }
   /*
@@ -64,7 +64,7 @@ class MagpieBridge {
     @param name 消息名称
     @param params 参数
   */
-  void sendNotificationToNative(String name, Map params){
+  Future<T> sendNotificationToNative<T>(String name, Map params){
     this.sendMessageToNativeWithCallBack('__magpie_notification__', name, params, null,null);
   }
   /*
@@ -73,7 +73,7 @@ class MagpieBridge {
     @param name 消息名称
     @param params 参数
   */
-  void sendActionToNative(String module,String name, Map params){
+  Future<T> sendActionToNative<T>(String module,String name, Map params){
     this.sendMessageToNativeWithCallBack('__magpie_action__', name, params, null, null);
   }
   /*
@@ -83,7 +83,7 @@ class MagpieBridge {
     @param params 参数
     @param callBack Native侧返回事件结果的回调
   */
-  void sendActionToNativeWithCallBack(String module,String name, Map params ,MagpieCallBack callBack){
+  Future<T> sendActionToNativeWithCallBack<T>(String module,String name, Map params ,MagpieCallBack callBack){
     this.sendMessageToNativeWithCallBack('__magpie_action__', name, params, callBack, module);
   }
   /*
@@ -131,9 +131,9 @@ class MagpieBridge {
     @param callBack 消息接收回调
     @param module (选填参数，接收方所属的Native的模块)
   */
-  void sendMessageToNativeWithCallBack(String messageType,String name, Map params ,MagpieCallBack callBack,String module){
+  Future<T> sendMessageToNativeWithCallBack<T>(String messageType,String name, Map params ,MagpieCallBack callBack,String module){
     if (name == null) {
-      return;
+      return null;
     }
     Map action = Map();
     action["name"] = name;
@@ -147,8 +147,8 @@ class MagpieBridge {
     }else{
       action["module"] = module;
     }
-    if(callBack==null){
-      _methodChannel.invokeMethod(messageType, action);
+    if(callBack == null){
+      return _methodChannel.invokeMethod<T>(messageType, action);
     }else{
       _methodChannel.invokeMethod(messageType, action).then((result){
         assert(result == null || result is Map);
@@ -158,6 +158,7 @@ class MagpieBridge {
         }
         callBack(name,params);
       });
+      return null;
     }
   }
 }
