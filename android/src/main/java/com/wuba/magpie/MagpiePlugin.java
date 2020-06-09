@@ -1,11 +1,13 @@
 package com.wuba.magpie;
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.Log;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import com.alibaba.fastjson.JSON;
+import com.idlefish.flutterboost.Debuger;
 import com.idlefish.flutterboost.FlutterBoostPlugin;
 import com.wuba.magpie.vo.FlutterResultVo;
 
@@ -26,7 +28,7 @@ import rx.android.schedulers.AndroidSchedulers;
 /**
  * create by hxin on 2019-12-06
  */
-public class MagpiePlugin extends FlutterBoostPlugin {
+public class MagpiePlugin  {
 
     private static String TAG = "MagpiePlugin";
 
@@ -50,7 +52,6 @@ public class MagpiePlugin extends FlutterBoostPlugin {
     }
 
     private MagpiePlugin(PluginRegistry.Registrar registrar) {
-        super(registrar);
         mMagpieMethodChannel = new MethodChannel(registrar.messenger(), "magpie_channel");
         setMagpieMethodCallHandler();
     }
@@ -77,6 +78,14 @@ public class MagpiePlugin extends FlutterBoostPlugin {
         synchronized (mMagpieMethodCallHandlers) {
             mMagpieMethodCallHandlers.add(handler);
         }
+    }
+
+    public void invokeMethod(final String name, Serializable args, MethodChannel.Result result) {
+        if ("__event__".equals(name)) {
+            Debuger.exception("method name should not be __event__");
+        }
+
+        mMagpieMethodChannel.invokeMethod(name, args, result);
     }
 
     /**
@@ -136,14 +145,14 @@ public class MagpiePlugin extends FlutterBoostPlugin {
             return;
         }
         Map<String, Object> params = methodCall.argument("params");
-        Log.d(TAG, "接收方法参数params：" + (params !=null? JSON.toJSONString(params):""));
+        Log.d(TAG, "接收方法参数params：" + (params != null ? JSON.toJSONString(params):""));
         Object obj = MagpieFlutterActionRegister.getInstance().invokeNativeMethod(name,params);
         if(result == null) {
             return;
         }
         if(obj instanceof FlutterResultVo) {
             result.success(((FlutterResultVo)obj).getResult());
-            Log.d(TAG, "返回数据："+JSON.toJSONString(((FlutterResultVo)obj)));
+            Log.d(TAG, "返回数据：" + JSON.toJSONString(((FlutterResultVo)obj)));
         } else if(obj instanceof Observable) {
             Observable<FlutterResultVo> ob = (Observable<FlutterResultVo>)obj;
             ob.observeOn(AndroidSchedulers.mainThread()).subscribe(new Subscriber<FlutterResultVo>() {

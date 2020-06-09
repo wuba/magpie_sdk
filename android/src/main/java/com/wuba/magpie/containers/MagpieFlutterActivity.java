@@ -1,7 +1,8 @@
 package com.wuba.magpie.containers;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
+
+import androidx.annotation.Nullable;
 
 import com.idlefish.flutterboost.containers.BoostFlutterActivity;
 
@@ -9,6 +10,8 @@ import com.idlefish.flutterboost.containers.BoostFlutterActivity;
  * create by huangxin on 2019-12-06
  */
 public class MagpieFlutterActivity extends BoostFlutterActivity {
+
+    public static final String EXTRA_PARAMS = "params";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

@@ -1,25 +1,24 @@
 package com.idlefish.flutterboost.containers;
 
 import android.app.Activity;
-import android.arch.lifecycle.Lifecycle;
+import android.graphics.Color;
+import android.view.*;
+import androidx.lifecycle.Lifecycle;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 
 import com.idlefish.flutterboost.FlutterBoost;
 import com.idlefish.flutterboost.XFlutterView;
+import com.idlefish.flutterboost.XPlatformPlugin;
 import io.flutter.embedding.android.*;
 import io.flutter.embedding.engine.FlutterEngine;
 import io.flutter.embedding.engine.FlutterShellArgs;
-import io.flutter.plugin.platform.PlatformPlugin;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -256,16 +255,22 @@ public class FlutterFragment extends Fragment implements FlutterActivityAndFragm
         return delegate.onCreateView(inflater, container, savedInstanceState);
     }
 
+
     @Override
     public void onStart() {
         super.onStart();
-        delegate.onStart();
+        if (!isHidden()) {
+            delegate.onStart();
+        }
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        delegate.onResume();
+        if (!isHidden()) {
+            delegate.onResume();
+        }
+
     }
 
     // TODO(mattcarroll): determine why this can't be in onResume(). Comment reason, or move if possible.
@@ -277,13 +282,17 @@ public class FlutterFragment extends Fragment implements FlutterActivityAndFragm
     @Override
     public void onPause() {
         super.onPause();
-        delegate.onPause();
+        if (!isHidden()) {
+            delegate.onPause();
+        }
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        delegate.onStop();
+        if (!isHidden()) {
+            delegate.onStop();
+        }
     }
 
     @Override
@@ -300,6 +309,15 @@ public class FlutterFragment extends Fragment implements FlutterActivityAndFragm
         delegate = null;
     }
 
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if (hidden) {
+            delegate.onPause();
+        } else {
+            delegate.onResume();
+        }
+    }
 
     @ActivityCallThrough
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -448,12 +466,8 @@ public class FlutterFragment extends Fragment implements FlutterActivityAndFragm
 
     @Nullable
     @Override
-    public PlatformPlugin providePlatformPlugin(@Nullable Activity activity, @NonNull FlutterEngine flutterEngine) {
-        if (activity != null) {
-            return new PlatformPlugin(getActivity(), flutterEngine.getPlatformChannel());
-        } else {
-            return null;
-        }
+    public XPlatformPlugin providePlatformPlugin( @NonNull FlutterEngine flutterEngine) {
+        return BoostViewUtils.getPlatformPlugin(flutterEngine.getPlatformChannel());
     }
 
     /**
