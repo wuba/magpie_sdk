@@ -18,4 +18,9 @@ public class MagpieFlutterActivity extends BoostFlutterActivity {
         super.onCreate(savedInstanceState);
     }
 
+    public static NewEngineIntentBuilder withNewEngine() {
+        return new NewEngineIntentBuilder(MagpieFlutterActivity.class);
+    }
+
+
 }
