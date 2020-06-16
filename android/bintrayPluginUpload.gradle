@@ -84,7 +84,7 @@ apply plugin: 'com.jfrog.bintray'
 
 
 def mRepo = "magpie"
-def gitUrl = 'https://github.com/hyman/basetools'   // Git仓库的url
+def gitUrl = 'https://github.com/wuba/magpie_sdk.git'   // Git仓库的url
 def groupIdDefined = "com.wuba.magpie"//
 
 def artifactIdDefined = "magpie_flutter_debug_default"
