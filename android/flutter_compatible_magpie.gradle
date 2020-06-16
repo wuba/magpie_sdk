@@ -19,17 +19,17 @@ apply plugin: FlutterPlugin
 
 class FlutterPlugin implements Plugin<Project> {
 
-    private static final String MAVEN_REPO = "http://download.flutter.io";
+    private static final String MAVEN_REPO = "https://dl.bintray.com/hxingood123/flutter/";
 
     // The platforms that can be passed to the `--Ptarget-platform` flag.
-    //private static final String PLATFORM_ARM = "arm";
+    private static final String PLATFORM_ARM = "arm";
     private static final String PLATFORM_ARM32 = "android-arm";
     private static final String PLATFORM_ARM64 = "android-arm64";
     private static final String PLATFORM_X86 = "android-x86";
     private static final String PLATFORM_X86_64 = "android-x64";
 
     // The ABI architectures.
-    //private static final String ARCH_ARM = "armeabi";
+    private static final String ARCH_ARM = "armeabi";
     private static final String ARCH_ARM32 = "armeabi-v7a";
     private static final String ARCH_ARM64 = "arm64-v8a";
     private static final String ARCH_X86 = "x86";
@@ -37,7 +37,7 @@ class FlutterPlugin implements Plugin<Project> {
 
     // Maps platforms to ABI architectures.
     private static final Map PLATFORM_ARCH_MAP = [
-            //(PLATFORM_ARM)   : ARCH_ARM,
+            (PLATFORM_ARM)   : ARCH_ARM,
             (PLATFORM_ARM32) : ARCH_ARM32,
             (PLATFORM_ARM64) : ARCH_ARM64,
             (PLATFORM_X86)   : ARCH_X86,
@@ -52,12 +52,12 @@ class FlutterPlugin implements Plugin<Project> {
             (ARCH_ARM64) : 2,
             (ARCH_X86)   : 3,
             (ARCH_X86_64): 4,
-            //(ARCH_ARM)   : 5,
+            (ARCH_ARM)   : 5,
     ]
 
     // When split is enabled, multiple APKs are generated per each ABI.
     private static final List DEFAULT_PLATFORMS = [
-            //PLATFORM_ARM,
+            PLATFORM_ARM,
             PLATFORM_ARM32,
             PLATFORM_ARM64,
     ]
@@ -140,6 +140,7 @@ class FlutterPlugin implements Plugin<Project> {
         // Add the embedding dependency.
         addApiDependencies(project, buildType.name,
                 "io.flutter:flutter_embedding_$flutterBuildMode:$engineVersion")
+
         List<String> platforms = getTargetPlatforms().collect()
         // Debug mode includes x86 and x64, which are commonly used in emulators.
         if (flutterBuildMode == "debug" && !useLocalEngine()) {

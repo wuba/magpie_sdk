@@ -188,5 +188,5 @@ dependencies {
 }
 
 //apply from: "bintrayUpload.gradle"
-apply from: "bintrayPluginUpload.gradle"
-//apply from: "bintrayPluginSDKUpload.gradle"
+//apply from: "bintrayPluginUpload.gradle"
+apply from: "bintrayPluginSDKUpload.gradle"
