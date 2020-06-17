@@ -46,7 +46,7 @@ public interface IFlutterViewContainer {
     /**
      * call to destroy the container
      */
-    void finishContainer(Map<String, Object> result);
+    void finishContainer(Map<String,Object> result);
 
     /**
      * container name
