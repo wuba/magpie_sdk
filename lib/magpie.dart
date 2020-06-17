@@ -37,7 +37,7 @@ typedef MagepiePageLifeCycleObserver = void Function(MagepiePageLifeCycle state,
  * @param 参数
  * @param 页面实例的唯一标识
  */
-typedef Widget MagepiePageBuilder(String pageName, Map params, String uniqueId);
+typedef Widget MagepiePageBuilder(String pageName, Map<String, dynamic> params, String uniqueId);
 
 class Magpie {
 
@@ -82,7 +82,7 @@ class Magpie {
    * @param exts 拓展参数
    * @disc 路由参数将透传至Native侧，将由Native根据页面路由协议中的页面名称信息，打开新的载体页，并将对应的页面名，参数传递到新的Dart页面组件中进行页面初始化
    */
-  Future<Map<dynamic,dynamic>> open(String url,{Map<dynamic,dynamic> urlParams,Map<dynamic,dynamic> exts}){
+  Future<Map<dynamic,dynamic>> open(String url,{Map<String,dynamic> urlParams,Map<String,dynamic> exts}){
     return FlutterBoost.singleton.open(url,urlParams:urlParams, exts:exts);
   }
   /**
@@ -92,7 +92,7 @@ class Magpie {
    * @param exts 拓展参数
    * @disc 相关参数将传至Native侧
    */
-  Future<bool> close(String id,{Map<dynamic,dynamic> result,Map<dynamic,dynamic> exts}){
+  Future<bool> close(String id,{Map<String,dynamic> result,Map<String,dynamic> exts}){
     return FlutterBoost.singleton.close(id,result:result, exts:exts);
   }
   /**

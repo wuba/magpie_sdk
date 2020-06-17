@@ -33,10 +33,6 @@ public class FlutterBoost {
     private long FlutterPostFrameCallTime = 0;
     private Application.ActivityLifecycleCallbacks mActivityLifecycleCallbacks;
 
-    private FlutterBoost() {
-
-    }
-
     public long getFlutterPostFrameCallTime() {
         return FlutterPostFrameCallTime;
     }

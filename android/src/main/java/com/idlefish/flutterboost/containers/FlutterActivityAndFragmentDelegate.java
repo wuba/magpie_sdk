@@ -466,7 +466,7 @@ public class FlutterActivityAndFragmentDelegate implements IFlutterViewContainer
          * Flutter experience should control system chrome.
          */
         @Nullable
-        XPlatformPlugin providePlatformPlugin(@NonNull FlutterEngine flutterEngine);
+        XPlatformPlugin providePlatformPlugin( @NonNull FlutterEngine flutterEngine);
 
         /**
          * Hook for the host to configure the {@link FlutterEngine} as desired.
