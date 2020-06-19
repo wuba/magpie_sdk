@@ -3,12 +3,12 @@ package com.wuba.magpie_example;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Toast;
 
-import com.alibaba.fastjson.JSON;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.idlefish.flutterboost.interfaces.IFlutterViewContainer;
 import com.wuba.magpie.Magpie;
 

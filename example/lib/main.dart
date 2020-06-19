@@ -19,9 +19,9 @@ class _MyAppState extends State<MyApp> {
   void initState() {
     super.initState();
     Magpie.singleton.registerPageBuilders({
-      'flutterFragment': (pageName, params, _) =>
+      'flutterFragment': (String pageName, Map<String, dynamic> params, String _) =>
           FragmentRouteWidget(params),
-      'flutterPage': (pageName, params, _) {
+      'flutterPage': (String pageName, Map<String, dynamic> params, String _) {
         print("flutterPage params:$params");
         return FlutterRouteWidget(params:params);
       },
@@ -48,7 +48,12 @@ class _MyAppState extends State<MyApp> {
   }
 
   void _onRoutePushed(
-      String pageName, String uniqueId, Map params, Route route, Future _) {}
+      String pageName,
+      String uniqueId,
+      Map<String, dynamic> params,
+      Route<dynamic> route,
+      Future<dynamic> _,
+      ) {}
 }
 
 class FragmentRouteWidget extends StatelessWidget {

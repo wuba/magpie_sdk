@@ -2,9 +2,9 @@ package com.idlefish.flutterboost.containers;
 
 
 import android.app.Activity;
-import android.arch.lifecycle.Lifecycle;
-import android.arch.lifecycle.LifecycleOwner;
-import android.arch.lifecycle.LifecycleRegistry;
+import androidx.lifecycle.Lifecycle;
+import androidx.lifecycle.LifecycleOwner;
+import androidx.lifecycle.LifecycleRegistry;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
@@ -15,12 +15,13 @@ import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import android.view.*;
 import android.widget.*;
 import com.idlefish.flutterboost.FlutterBoost;
 import com.idlefish.flutterboost.XFlutterView;
+import com.idlefish.flutterboost.XPlatformPlugin;
 import io.flutter.Log;
 import io.flutter.embedding.android.DrawableSplashScreen;
 import io.flutter.embedding.android.FlutterView;
@@ -49,12 +50,13 @@ public class BoostFlutterActivity extends Activity
     protected static final String EXTRA_DESTROY_ENGINE_WITH_ACTIVITY = "destroy_engine_with_activity";
 
     protected static final String EXTRA_URL = "url";
-    public static final String EXTRA_PARAMS = "params";
+    protected static final String EXTRA_PARAMS = "params";
 
 
     // Default configuration.
     protected static final String DEFAULT_BACKGROUND_MODE = BackgroundMode.opaque.name();
 
+    private static XPlatformPlugin sXPlatformPlugin;
 
     public static Intent createDefaultIntent(@NonNull Context launchContext) {
         return withNewEngine().build(launchContext);
@@ -439,12 +441,8 @@ public class BoostFlutterActivity extends Activity
 
     @Nullable
     @Override
-    public PlatformPlugin providePlatformPlugin(@Nullable Activity activity, @NonNull FlutterEngine flutterEngine) {
-        if (activity != null) {
-            return new PlatformPlugin(getActivity(), flutterEngine.getPlatformChannel());
-        } else {
-            return null;
-        }
+    public XPlatformPlugin providePlatformPlugin(@NonNull FlutterEngine flutterEngine) {
+        return BoostViewUtils.getPlatformPlugin(flutterEngine.getPlatformChannel());
     }
 
     /**

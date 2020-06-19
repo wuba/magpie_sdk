@@ -15,10 +15,18 @@
 
 或者：
 
-    dependencies:   
+    dependencies:
      magpie:     
      git:
        url: https://github.com/wuba/magpie_sdk.git
+
+或者:
+
+     dependencies:
+      magpie:
+      git:
+        url: https://github.com/wuba/magpie_sdk.git
+        ref: dev_androidx_0.0.1
 
 ### 直接集成
 将magpie lib内文件加入现有Dart工程中
