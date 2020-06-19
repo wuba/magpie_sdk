@@ -1,2 +1,5 @@
 example/ios/MagpieDemo.xcworkspace/contents.xcworkspacedata
 example/ios/MagpieDemo.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist
+.packages
+pubspec.lock
+.dart_tool/package_config.json

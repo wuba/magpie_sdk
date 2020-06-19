@@ -17,9 +17,6 @@ Podfile中需在target ‘***’ do 后面加入
 
     pod 'MagpieBridge', :path => 'magpie/ios/source'
 
-### 静态库
-
-    pod 'MagpieBridge', :path => 'magpie/ios/lib'
 ## 集成Flutter SDK
 
 Podfile中需在target ‘***’ do 后面加入
@@ -38,19 +35,10 @@ Podfile中需在target ‘***’ do 后面加入
 
 ## 架构
 
-### MagpieBridge.a.
-支持 x86_64 armv7 arm64
-
 ### Flutter.framework
 release支持 armv7 arm64
 debug支持 x86_64 armv7 arm64
 
-# SDK结构
-
-- MagpieBridge.a 静态库文件
-- MagpieBridge.podspec podsepc文件
-- Headers
-- README.MD 说明
 
 # 平台工程要求
 ## App.framework文件说明

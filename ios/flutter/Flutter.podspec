@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'Flutter'
-  s.version          = '1.12.13'
+  s.version          = '1.17.3'
   s.platform         = :ios, '8.0'
   s.summary          = 'Flutter'
   s.description      = <<-DESC
