@@ -31,9 +31,9 @@ dependencies {
     //在开发初期可以依赖此带有空flutter载体页的aar包进行hot reload，方便开发调试, 当调试通过，去掉依赖即可
     debugImplementation 'com.wuba.magpie:magpie_flutter_debug_default:0.0.1'
     //magpie Android SDK debug
-    debugImplementation 'com.wuba.magpie:magpie_debug:0.0.1'
+    debugImplementation 'com.wuba.magpie:magpie_debug:0.0.9'
     //magpie Android SDK release
-    releaseImplementation 'com.wuba.magpie:magpie_release:0.0.1'
+    releaseImplementation 'com.wuba.magpie:magpie_release:0.0.9'
 }
 ```
 
