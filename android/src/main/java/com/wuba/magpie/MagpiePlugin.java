@@ -45,9 +45,9 @@ public class MagpiePlugin  {
     }
 
     public static void registerWith(PluginRegistry.Registrar registrar) {
-        if(sInstance == null) {
+        //if(sInstance == null) {
             sInstance = new MagpiePlugin(registrar);
-        }
+        //}
         FlutterBoostPlugin.registerWith(registrar);
     }
 
