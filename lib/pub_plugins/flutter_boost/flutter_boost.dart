@@ -77,7 +77,7 @@ class FlutterBoost {
             pageInfo.containsKey("params") &&
             pageInfo.containsKey("uniqueId")) {
           ContainerCoordinator.singleton.nativeContainerDidShow(
-              pageInfo["name"], new Map<String, dynamic>.from(pageInfo["params"]), pageInfo["uniqueId"]);
+              pageInfo["name"], pageInfo["params"], pageInfo["uniqueId"]);
         }
       });
     });
