@@ -76,8 +76,11 @@ class FlutterBoost {
         if (pageInfo.containsKey("name") &&
             pageInfo.containsKey("params") &&
             pageInfo.containsKey("uniqueId")) {
+
+          var paramsMap = new Map<String, dynamic>.from(pageInfo["params"]);
+
           ContainerCoordinator.singleton.nativeContainerDidShow(
-              pageInfo["name"], pageInfo["params"], pageInfo["uniqueId"]);
+              pageInfo["name"],paramsMap, pageInfo["uniqueId"]);
         }
       });
     });
