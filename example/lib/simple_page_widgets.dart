@@ -275,6 +275,23 @@ class _FlutterRouteWidgetState extends State<FlutterRouteWidget> {
                 onTap: () => MagpieBridge.singleton
                     .sendNotificationToNative('notification', {'aaa': 'bbb'}),
               ),
+              InkWell(
+                  child: Container(
+                      padding: const EdgeInsets.all(8.0),
+                      margin: const EdgeInsets.all(8.0),
+                      decoration: BoxDecoration(
+                        color: Color(0xFFF59A23),
+                        borderRadius: BorderRadius.all(Radius.circular(5.0)),
+                      ),
+                      child: Text(
+                        'sendDataRequestToNative1',
+                        style: TextStyle(fontSize: 18.0, color: Colors.black),
+                      )),
+                  onTap: () => MagpieBridge.singleton.sendDataRequestToNative(
+                      'do_action', {"path":"getUserInfo","jumpParameter":{"key1":"value1"}},
+                          (name, params) async {
+                        showMyCupertinoDialog(context, name, params);
+                      })),
 //                InkWell(
 //                  child: Container(
 //                      padding: const EdgeInsets.all(8.0),
