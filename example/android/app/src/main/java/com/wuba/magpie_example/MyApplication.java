@@ -41,7 +41,8 @@ public class MyApplication extends Application {
                 .addFlutterAction(FlutterDataProvider.getHttpHeaderAction())
                 .addFlutterAction(FlutterDataProvider.getRXDeviceInfoAction())
                 .addFlutterAction(FlutterDataProvider.getUploadLogAction())
-                .addFlutterAction(FlutterDataProvider.getNotificationAction());
+                .addFlutterAction(FlutterDataProvider.getNotificationAction())
+                .addFlutterAction(FlutterDataProvider.getCommonDoAction());
 
 
     }

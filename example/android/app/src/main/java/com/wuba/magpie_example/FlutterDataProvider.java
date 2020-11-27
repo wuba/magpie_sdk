@@ -1,18 +1,26 @@
 package com.wuba.magpie_example;
 
+import android.app.Activity;
 import android.util.Log;
 import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
+import com.idlefish.flutterboost.FlutterBoost;
+import com.idlefish.flutterboost.FlutterViewContainerManager;
 import com.wuba.magpie.interfaces.ABSFlutterDataProvider;
 import com.wuba.magpie.vo.FlutterAction;
 import com.wuba.magpie.vo.FlutterResultVo;
 import com.wuba.magpie_example.vo.FlutterBaseResultVo;
 import com.wuba.magpie_example.vo.User;
 
+import org.json.JSONObject;
+
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
 
+import io.flutter.plugin.common.MethodChannel;
 import rx.Observable;
 import rx.functions.Func1;
 import rx.schedulers.Schedulers;
@@ -24,6 +32,16 @@ import rx.schedulers.Schedulers;
 public class FlutterDataProvider extends ABSFlutterDataProvider {
 
     private static String TAG = "FlutterDataProvider";
+
+
+    /**
+     * 通用
+     * @return
+     */
+    public static FlutterAction getCommonDoAction() {
+        return new FlutterAction("common", FlutterDataProvider.class,"do_action");
+    }
+
 
     /**
      * 获取用户信息
@@ -65,8 +83,16 @@ public class FlutterDataProvider extends ABSFlutterDataProvider {
         return new FlutterAction("common", FlutterDataProvider.class,"notification");
     }
 
-
-
+    /**
+     * do_action为接收flutter协议入口，暴露flutter回调，方便业务方扩展
+     * @param paramMap
+     * @param result
+     */
+    public void do_action(Map<String,Object> paramMap, MethodChannel.Result result) {
+        FlutterViewContainerManager mManager = (FlutterViewContainerManager) FlutterBoost.instance().containerManager();
+        Activity ac = mManager.getCurrentTopRecord().getContainer().getContextActivity();
+        result.success(paramMap);
+    }
 
     /**
      * 获取用户信息
