@@ -141,12 +141,12 @@ public class MagpiePlugin  {
             return;
         }
 
-        if (!MagpieFlutterActionRegister.getInstance().hasNativeModuleAndroidMthod(module,name)) {
+        if(!MagpieFlutterActionRegister.getInstance().hasNativeModuleAndroidMthod(module,name)) {
             return;
         }
         Map<String, Object> params = methodCall.argument("params");
         Log.d(TAG, "接收方法参数params：" + (params != null ? JSON.toJSONString(params):""));
-        Object obj = MagpieFlutterActionRegister.getInstance().invokeNativeMethod(name,params);
+        Object obj = MagpieFlutterActionRegister.getInstance().invokeNativeMethod(name,params,result);
         if(result == null) {
             return;
         }

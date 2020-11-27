@@ -14,6 +14,7 @@ import com.wuba.magpie.interfaces.ABSFlutterDataProvider;
 import com.wuba.magpie.vo.FlutterAction;
 import com.wuba.magpie.vo.FlutterResultVo;
 
+import io.flutter.plugin.common.MethodChannel;
 import rx.Observable;
 
 /**
@@ -60,29 +61,42 @@ public class MagpieFlutterActionRegister<T> {
         Method m = getMethod(vo.getClz(),vo.getMethod());
         Class<?>[] classes = m.getParameterTypes();
 
-        if (Map.class != classes[0]) {
-            throw new RuntimeException("方法:"+vo.getMethod()
-                    +"参数类型错误,必须为Map<String,Object>类型");
-        }
+        if(classes.length == 1) {
+            if (Map.class != classes[0]) {
+                throw new RuntimeException("方法:"+vo.getMethod()
+                        +"参数类型错误,必须为Map<String,Object>类型");
+            }
 
-        Class<?> returnClass = m.getReturnType();
-        Type type = m.getGenericReturnType();
+            Class<?> returnClass = m.getReturnType();
+            Type type = m.getGenericReturnType();
 
-        if(returnClass != Observable.class
-                && returnClass != FlutterResultVo.class
-                && returnClass != void.class) {
-            throw new RuntimeException("方法:"+vo.getMethod()+"返回类型错误,必须为NativeBaseResultVo" +
-                    "或者Observable<FlutterResultVo>类型");
-        }
+            if(returnClass != Observable.class
+                    && returnClass != FlutterResultVo.class
+                    && returnClass != void.class) {
+                throw new RuntimeException("方法:"+vo.getMethod()+"返回类型错误,必须为NativeBaseResultVo" +
+                        "或者Observable<FlutterResultVo>类型");
+            }
 
-        if(returnClass == Observable.class) {
-            if(type instanceof ParameterizedType) {
-                ParameterizedType pt = (ParameterizedType) type;
-                Class<?> genericClazz = (Class<?>)pt.getActualTypeArguments()[0];
-                if(genericClazz != FlutterResultVo.class) {
-                    throw new RuntimeException("方法:"+vo.getMethod()+
-                            "参数类型错误,必须为Observable<FlutterResultVo>类型");
+            if(returnClass == Observable.class) {
+                if(type instanceof ParameterizedType) {
+                    ParameterizedType pt = (ParameterizedType) type;
+                    Class<?> genericClazz = (Class<?>)pt.getActualTypeArguments()[0];
+                    if(genericClazz != FlutterResultVo.class) {
+                        throw new RuntimeException("方法:"+vo.getMethod()+
+                                "参数类型错误,必须为Observable<FlutterResultVo>类型");
+                    }
                 }
+            }
+        }
+
+        if(classes.length == 2) {
+            if (Map.class != classes[0]) {
+                throw new RuntimeException("方法:"+vo.getMethod()
+                        +"参数类型错误,必须为Map<String,Object>类型");
+            }
+            if (MethodChannel.Result.class != classes[1]) {
+                throw new RuntimeException("方法:"+vo.getMethod()
+                        +"参数类型错误,必须为MethodChannel.Result.class类型");
             }
         }
 
@@ -138,15 +152,15 @@ public class MagpieFlutterActionRegister<T> {
         return mActionsClassMap.get(method).getClz();
     }
 
-    public Object invokeNativeMethod(String method, Map<String,Object> paramMap) {
-        Object provider = null;
+    public Object invokeNativeMethod(String method, Map<String,Object> paramMap,MethodChannel.Result...result) {
+        Object providerObj = null;
+        Class providerClz = null;
+        Object resultobj = null;
         try {
-            Class providerClz = getClass(method);
-            provider = providerClz.newInstance();
+            providerClz = getClass(method);
+            providerObj = providerClz.newInstance();
             Method m = providerClz.getMethod(method,Map.class);
-            //Method m = getMethod(providerClz,method);
-            Object obj = m.invoke(provider,paramMap);
-            return obj;
+            resultobj = m.invoke(providerObj,paramMap);
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         } catch (InstantiationException e) {
@@ -154,9 +168,20 @@ public class MagpieFlutterActionRegister<T> {
         } catch (InvocationTargetException e) {
             e.printStackTrace();
         } catch (NoSuchMethodException e) {
-            e.printStackTrace();
+            Method m = null;
+            try {
+                m = providerClz.getMethod(method, Map.class, MethodChannel.Result.class);
+                resultobj = m.invoke(providerObj,paramMap,result[0]);
+            } catch (NoSuchMethodException ex) {
+                ex.printStackTrace();
+            } catch (IllegalAccessException ex) {
+                ex.printStackTrace();
+            } catch (InvocationTargetException ex) {
+                ex.printStackTrace();
+            }
+        } finally {
+            return resultobj;
         }
-        return null;
     }
 
     public void clearAllActions(){
