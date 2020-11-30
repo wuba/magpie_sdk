@@ -48,7 +48,7 @@ class MagpieBridge {
     @param callBack Native侧返回数据的回调
   */
   Future<T> sendDataRequestToNative<T>(String name, Map params,MagpieCallBack callBack){
-    this.sendMessageToNativeWithCallBack('__magpie_data__', name, params, callBack,null);
+    return this.sendMessageToNativeWithCallBack('__magpie_data__', name, params, callBack,null);
   }
   /*
     Dart侧向Native发送埋点消息
@@ -57,7 +57,7 @@ class MagpieBridge {
     @param callBack Native侧的回调
   */
   Future<T> sendLogToNative<T>(String name, Map params,MagpieCallBack callBack){
-    this.sendMessageToNativeWithCallBack('__magpie_log__', name, params, callBack,null);
+    return this.sendMessageToNativeWithCallBack('__magpie_log__', name, params, callBack,null);
   }
   /*
     Dart侧向Native发送全局通知消息
@@ -65,7 +65,7 @@ class MagpieBridge {
     @param params 参数
   */
   Future<T> sendNotificationToNative<T>(String name, Map params){
-    this.sendMessageToNativeWithCallBack('__magpie_notification__', name, params, null,null);
+    return this.sendMessageToNativeWithCallBack('__magpie_notification__', name, params, null,null);
   }
   /*
     Dart侧向Native发送事件消息
@@ -74,7 +74,7 @@ class MagpieBridge {
     @param params 参数
   */
   Future<T> sendActionToNative<T>(String module,String name, Map params){
-    this.sendMessageToNativeWithCallBack('__magpie_action__', name, params, null, null);
+    return this.sendMessageToNativeWithCallBack('__magpie_action__', name, params, null, null);
   }
   /*
     Dart侧向Native发送事件消息，并接受回调
@@ -84,7 +84,7 @@ class MagpieBridge {
     @param callBack Native侧返回事件结果的回调
   */
   Future<T> sendActionToNativeWithCallBack<T>(String module,String name, Map params ,MagpieCallBack callBack){
-    this.sendMessageToNativeWithCallBack('__magpie_action__', name, params, callBack, module);
+    return this.sendMessageToNativeWithCallBack('__magpie_action__', name, params, callBack, module);
   }
   /*
     注册接收Native侧数据的监听回调
