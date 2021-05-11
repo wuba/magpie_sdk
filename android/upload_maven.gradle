@@ -1,9 +1,24 @@
+//package android
+
+//apply plugin: 'maven'
+//uploadArchives {
+//    repositories {
+//        mavenDeployer {
+//            //文件发布到下面目录
+//            repository(url : MAVEN_URL){
+//                authentication(userName: MAVEN_USERNAME, password: MAVEN_PASSWORD)
+//            }
+//            //设置插件的GAV参数
+//            pom.groupId = groupId
+//            pom.artifactId = artifactId
+//            pom.version = versionName
+//            pom.packaging = 'aar'
+//        }
+//    }
+//}
+
 
 apply plugin: 'maven-publish'
-apply plugin: 'com.jfrog.artifactory'
-apply plugin: 'com.jfrog.bintray'
-
-
 //生成sourceJar和javaDocJar构件
 task sourcesJar(type: Jar) {
     from android.sourceSets.main.java.srcDirs
@@ -25,32 +40,11 @@ task javadocJar(type: Jar, dependsOn: javadoc) {
 artifacts {
     archives sourcesJar
     archives javadocJar
-
 }
 
-// 定义pom文件参数
-def mRepo = "magpie"
-def gitUrl = 'https://github.com/wuba/magpie_sdk.git'   // Git仓库的url
-def groupIdDefined = "com.wuba.magpie"//
-def artifactIdDefined = "magpie_release"
-def versionDefined = "0.0.12"
-
-bintray {
-    user = 'hxingood123'
-    key = '6670e8d80efd3ddef76a719f74bb52b7b758f511' //在"edit profile"的"API key"中
-    publications = [ 'libraryRelease' ] //'MyPublication'与下面的publishing闭包里的名称对应
-    publish = true // 上传后立即发布到Bintray平台
-    pkg {
-        repo = mRepo //保留，表示上传bintray中的maven仓库
-        group = groupIdDefined
-        name = artifactIdDefined
-        licenses = ["Apache-2.0"]
-        vcsUrl = gitUrl
-        version {
-            name = versionDefined
-        }
-    }
-}
+def groupIdDefined = "com.wuba.car.magpie"
+def artifactIdDefined = "magpie_debug"
+def versionDefined = "0.0.13"
 
 // 构件文件和POM信息配置
 project.afterEvaluate {
@@ -155,13 +149,16 @@ project.afterEvaluate {
                 }
             }
         }
+        repositories {
+            maven {
+                //指定要上传的maven私服仓库
+                url = MAVEN_URL
+                //认证用户和密码
+                credentials {
+                    username MAVEN_USERNAME
+                    password MAVEN_PASSWORD
+                }
+            }
+        }
     }
 }
-
-// 执行上传命令
-// ./gradlew clean build bintrayUpload
-// ./gradlew bintrayUpload
-
-
-
-
