@@ -13,134 +13,24 @@ repositories {
 buildscript {
     repositories {
         google()
-        jcenter()
+        mavenCentral()
     }
 
     dependencies {
         classpath 'com.android.tools.build:gradle:3.5.0'
-        classpath "org.jfrog.buildinfo:build-info-extractor-gradle:3.1.1"
-        classpath "com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.4"
+//        classpath "org.jfrog.buildinfo:build-info-extractor-gradle:3.1.1"
+//        classpath "com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.4"
     }
 }
 
 rootProject.allprojects {
     repositories {
         google()
-        jcenter()
+        mavenCentral()
+        maven { url "https://maven.aliyun.com/repository/jcenter" }
+        maven { url "http://developer.huawei.com/repo/" }
     }
 }
-
-apply plugin: 'maven-publish'
-//gradle publishlibraryReleasePublicationToMavenRepository
-//gradle publishlibraryDebugPublicationToMavenRepository
-//project.afterEvaluate {
-//    publishing {
-//        publications {
-//            libraryRelease(MavenPublication) {
-//                artifact bundleReleaseAar
-//                groupId 'com.wuba.magpie'
-//                artifactId 'magpie_release'
-//                version '1.0.2'
-//
-//                pom.withXml {
-//                    def dependenciesNode = asNode().appendNode('dependencies')
-//                    configurations.implementation.allDependencies.withType(ModuleDependency) { ModuleDependency dp ->
-//                        if (dp.version != "unspecified") { // 过滤项目内library引用
-//                            def dependencyNode = dependenciesNode.appendNode('dependency')
-//                            dependencyNode.appendNode('groupId', dp.group)
-//                            dependencyNode.appendNode('artifactId', dp.name)
-//                            dependencyNode.appendNode('version', dp.version)
-//
-//                            // for exclusions
-//                            if (dp.excludeRules.size() > 0) {
-//                                def exclusions = dependencyNode.appendNode('exclusions')
-//                                dp.excludeRules.each { ExcludeRule ex ->
-//                                    def exclusion = exclusions.appendNode('exclusion')
-//                                    exclusion.appendNode('groupId', ex.group)
-//                                    exclusion.appendNode('artifactId', ex.module)
-//                                }
-//                            }
-//                        }
-//                    }
-//                    configurations.releaseApi.allDependencies.withType(ModuleDependency) { ModuleDependency dp ->
-//                        if (dp.version != "unspecified") { // 过滤项目内library引用
-//                            def dependencyNode = dependenciesNode.appendNode('dependency')
-//                            dependencyNode.appendNode('groupId', dp.group)
-//                            dependencyNode.appendNode('artifactId', dp.name)
-//                            dependencyNode.appendNode('version', dp.version)
-//
-//                            // for exclusions
-//                            if (dp.excludeRules.size() > 0) {
-//                                def exclusions = dependencyNode.appendNode('exclusions')
-//                                dp.excludeRules.each { ExcludeRule ex ->
-//                                    def exclusion = exclusions.appendNode('exclusion')
-//                                    exclusion.appendNode('groupId', ex.group)
-//                                    exclusion.appendNode('artifactId', ex.module)
-//                                }
-//                            }
-//                        }
-//                    }
-//                }
-//            }
-//            libraryDebug(MavenPublication) {
-//                artifact bundleReleaseAar
-//                groupId 'com.wuba.magpie'
-//                artifactId 'magpie_debug'
-//                version '1.0.1'
-//
-//                pom.withXml {
-//                    def dependenciesNode = asNode().appendNode('dependencies')
-//                    configurations.implementation.allDependencies.withType(ModuleDependency) { ModuleDependency dp ->
-//                        if (dp.version != "unspecified") { // 过滤项目内library引用
-//                            def dependencyNode = dependenciesNode.appendNode('dependency')
-//                            dependencyNode.appendNode('groupId', dp.group)
-//                            dependencyNode.appendNode('artifactId', dp.name)
-//                            dependencyNode.appendNode('version', dp.version)
-//
-//                            // for exclusions
-//                            if (dp.excludeRules.size() > 0) {
-//                                def exclusions = dependencyNode.appendNode('exclusions')
-//                                dp.excludeRules.each { ExcludeRule ex ->
-//                                    def exclusion = exclusions.appendNode('exclusion')
-//                                    exclusion.appendNode('groupId', ex.group)
-//                                    exclusion.appendNode('artifactId', ex.module)
-//                                }
-//                            }
-//                        }
-//                    }
-//                    configurations.debugApi.allDependencies.withType(ModuleDependency) { ModuleDependency dp ->
-//                        if (dp.version != "unspecified") { // 过滤项目内library引用
-//                            def dependencyNode = dependenciesNode.appendNode('dependency')
-//                            dependencyNode.appendNode('groupId', dp.group)
-//                            dependencyNode.appendNode('artifactId', dp.name)
-//                            dependencyNode.appendNode('version', dp.version)
-//
-//                            // for exclusions
-//                            if (dp.excludeRules.size() > 0) {
-//                                def exclusions = dependencyNode.appendNode('exclusions')
-//                                dp.excludeRules.each { ExcludeRule ex ->
-//                                    def exclusion = exclusions.appendNode('exclusion')
-//                                    exclusion.appendNode('groupId', ex.group)
-//                                    exclusion.appendNode('artifactId', ex.module)
-//                                }
-//                            }
-//                        }
-//                    }
-//                }
-//            }
-//        }
-//
-//        repositories {
-//            maven {
-//                url "xxx"
-//                credentials {
-//                    username=''
-//                    password = ''
-//                }
-//            }
-//        }
-//    }
-//}
 
 android {
     compileSdkVersion 29
